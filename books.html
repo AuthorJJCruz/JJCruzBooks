@@ -3,57 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Books | JJ Cruz</title>
+    <title>My Books - JJ Cruz Books</title>
     <style>
         body {
-            background-color: #111;
-            color: white;
+            margin: 0;
             font-family: Arial, sans-serif;
             text-align: center;
+            background-color: black;
+            color: white;
         }
+
         h1 {
             margin-top: 20px;
         }
+
         .books-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 20px;
-            padding: 20px;
+            margin-top: 20px;
         }
-        .book {
+
+        .book-card {
+            background-color: #222;
+            padding: 15px;
             width: 200px;
-            cursor: pointer;
-            transition: transform 0.3s ease-in-out;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
         }
-        .book:hover {
-            transform: scale(1.1);
+
+        .book-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .book-title {
+            margin-top: 10px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .buy-button {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .buy-button:hover {
+            background-color: darkred;
+        }
+
+        .back-button {
+            margin-top: 30px;
+            background-color: blue;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <h1>Explore My Books</h1>
+
+    <h1>My Books</h1>
+
     <div class="books-container">
-        <a href="https://www.amazon.com/dp/B0DXWSPPZJ" target="_blank">
-            <img src="book1.jpg" alt="Book 1" class="book">
-        </a>
-        <a href="https://www.amazon.com/dp/B0F1DJ1PMG" target="_blank">
-            <img src="book2.jpg" alt="Book 2" class="book">
-        </a>
-        <a href="https://www.amazon.com/dp/B0DTQ7CJR4" target="_blank">
-            <img src="book3.jpg" alt="Book 3" class="book">
-        </a>
-        <a href="https://www.amazon.com/dp/B0F118PPQ1" target="_blank">
-            <img src="book4.jpg" alt="Book 4" class="book">
-        </a>
-        <a href="https://www.amazon.com/dp/YOUR_BOOK_5" target="_blank">
-            <img src="book5.jpg" alt="Book 5" class="book">
-        </a>
-        <a href="https://www.amazon.com/dp/YOUR_BOOK_6" target="_blank">
-            <img src="book6.jpg" alt="Book 6" class="book">
-        </a>
+        <!-- Book 1 -->
+        <div class="book-card">
+            <img src="book1.png" alt="Time-Travel">
+            <div class="book-title">Project Crucifix</div>
+            <a href="https://www.amazon.com/dp/B0DXWSPPZJ" target="_blank">
+                <button class="buy-button">Buy on Amazon</button>
+            </a>
+        </div>
+
+        <!-- Book 2 -->
+        <div class="book-card">
+            <img src="book2.png" alt="Horror">
+            <div class="book-title">The Halloween Chronicles</div>
+            <a href="https://www.amazon.com/dp/B0F1DJ1PMG" target="_blank">
+                <button class="buy-button">Buy on Amazon</button>
+            </a>
+        </div>
+
+        <!-- Book 3 -->
+        <div class="book-card">
+            <img src="book3.png" alt="Romance">
+            <div class="book-title">Chances of Snow: Two Worlds Before</div>
+            <a href="https://www.amazon.com/dp/B0DTQ7CJR4" target="_blank">
+                <button class="buy-button">Buy on Amazon</button>
+            </a>
+        </div>
+
+        <!-- Book 4 -->
+        <div class="book-card">
+            <img src="book4.png" alt="Romance">
+            <div class="book-title">Chances of Snow: Two Worlds Apart</div>
+            <a href="https://www.amazon.com/dp/B0F118PPQ1" target="_blank">
+                <button class="buy-button">Buy on Amazon</button>
+            </a>
+        </div>
+
+        <!-- Book 5 -->
+        <div class="book-card">
+            <img src="book5.png" alt="Author Page">
+            <div class="book-title">Author Bio</div>
+            <a href="https://www.amazon.com/author/jjcruz" target="_blank">
+                <button class="buy-button">Buy on Amazon</button>
+            </a>
+        </div>
+
+        <!-- Book 6 -->
+        <div class="book-card">
+            <img src="book6.png" alt="TBA">
+            <div class="book-title">TBA</div>
+            <a href="https://www.amazon.com/dp/YOUR_BOOK6_LINK" target="_blank">
+                <button class="buy-button">Buy on Amazon</button>
+            </a>
+        </div>
     </div>
-    <br>
-    <a href="index.html" style="color: white; text-decoration: none; font-size: 18px;">Back to Home</a>
+
+    <a href="index.html" class="back-button">Back to Home</a>
+
 </body>
 </html>
