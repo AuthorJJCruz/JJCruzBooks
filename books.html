@@ -3,15 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Books - JJ Cruz Books</title>
+    <title>Books | JJ Cruz</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            text-align: center;
             background-color: #111;
             color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
         }
-        .book-container {
+        h1 {
+            margin-top: 20px;
+        }
+        .books-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
@@ -19,57 +22,38 @@
             padding: 20px;
         }
         .book {
-            background: #222;
-            padding: 15px;
-            border-radius: 10px;
             width: 200px;
-            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
         }
-        .book img {
-            width: 100%;
-            border-radius: 5px;
-        }
-        .book a {
-            display: block;
-            margin-top: 10px;
-            padding: 10px;
-            background: #e63946;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-        .book a:hover {
-            background: #d62828;
-        }
-        .home-button {
-            margin-top: 20px;
-            display: inline-block;
-            padding: 10px 15px;
-            background: #007bff;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-        .home-button:hover {
-            background: #0056b3;
+        .book:hover {
+            transform: scale(1.1);
         }
     </style>
 </head>
 <body>
-    <h1>My Books</h1>
-    <div class="book-container">
-        <div class="book">
-            <img src="book1.jpg" alt="Book 1">
-            <p>Book Title 1</p>
-            <a href="https://www.amazon.com/dp/YOUR_BOOK1_LINK" target="_blank">Buy on Amazon</a>
-        </div>
-        <div class="book">
-            <img src="book2.jpg" alt="Book 2">
-            <p>Book Title 2</p>
-            <a href="https://www.amazon.com/dp/YOUR_BOOK2_LINK" target="_blank">Buy on Amazon</a>
-        </div>
-        <!-- Add more books here -->
+    <h1>Explore My Books</h1>
+    <div class="books-container">
+        <a href="https://www.amazon.com/dp/B0DXWSPPZJ" target="_blank">
+            <img src="book1.jpg" alt="Book 1" class="book">
+        </a>
+        <a href="https://www.amazon.com/dp/B0F1DJ1PMG" target="_blank">
+            <img src="book2.jpg" alt="Book 2" class="book">
+        </a>
+        <a href="https://www.amazon.com/dp/B0DTQ7CJR4" target="_blank">
+            <img src="book3.jpg" alt="Book 3" class="book">
+        </a>
+        <a href="https://www.amazon.com/dp/B0F118PPQ1" target="_blank">
+            <img src="book4.jpg" alt="Book 4" class="book">
+        </a>
+        <a href="https://www.amazon.com/dp/YOUR_BOOK_5" target="_blank">
+            <img src="book5.jpg" alt="Book 5" class="book">
+        </a>
+        <a href="https://www.amazon.com/dp/YOUR_BOOK_6" target="_blank">
+            <img src="book6.jpg" alt="Book 6" class="book">
+        </a>
     </div>
-    <a href="index.html" class="home-button">Back to Home</a>
+    <br>
+    <a href="index.html" style="color: white; text-decoration: none; font-size: 18px;">Back to Home</a>
 </body>
 </html>
