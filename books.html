@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books - JJ Cruz Books</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #111;
+            color: white;
+        }
+        .book-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+        .book {
+            background: #222;
+            padding: 15px;
+            border-radius: 10px;
+            width: 200px;
+            text-align: center;
+        }
+        .book img {
+            width: 100%;
+            border-radius: 5px;
+        }
+        .book a {
+            display: block;
+            margin-top: 10px;
+            padding: 10px;
+            background: #e63946;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .book a:hover {
+            background: #d62828;
+        }
+        .home-button {
+            margin-top: 20px;
+            display: inline-block;
+            padding: 10px 15px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .home-button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>My Books</h1>
+    <div class="book-container">
+        <div class="book">
+            <img src="book1.jpg" alt="Book 1">
+            <p>Book Title 1</p>
+            <a href="https://www.amazon.com/dp/YOUR_BOOK1_LINK" target="_blank">Buy on Amazon</a>
+        </div>
+        <div class="book">
+            <img src="book2.jpg" alt="Book 2">
+            <p>Book Title 2</p>
+            <a href="https://www.amazon.com/dp/YOUR_BOOK2_LINK" target="_blank">Buy on Amazon</a>
+        </div>
+        <!-- Add more books here -->
+    </div>
+    <a href="index.html" class="home-button">Back to Home</a>
+</body>
+</html>
