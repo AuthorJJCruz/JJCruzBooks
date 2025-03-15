@@ -6,41 +6,65 @@
     <title>JJ Cruz Books</title>
     <style>
         body {
+            margin: 0;
             font-family: Arial, sans-serif;
             text-align: center;
-            background-color: #111;
+            background-color: black;
             color: white;
         }
+        
+        /* Banner Styling */
         .banner {
             width: 100%;
-            height: auto;
+            height: 40vh; /* 40% of the viewport height */
+            background: url('JJ.Cruz.Banner.png') no-repeat center center;
+            background-size: cover;
         }
-        .menu {
+
+        /* Main Content */
+        .content {
+            padding: 20px;
+        }
+
+        /* Button Styling */
+        .button-container {
             margin-top: 20px;
         }
-        .menu a {
-            display: inline-block;
-            padding: 10px 20px;
-            margin: 10px;
-            background-color: #444;
+
+        button {
+            background-color: #333;
             color: white;
-            text-decoration: none;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
             border-radius: 5px;
         }
-        .menu a:hover {
-            background-color: #666;
+
+        button:hover {
+            background-color: #555;
         }
     </style>
 </head>
 <body>
-    <img src="JJ.Cruz.Banner.png" alt="JJ Cruz Banner" class="banner">
-    <h1>Welcome to JJ Cruz Books</h1>
-    <p>Explore thrilling stories that challenge your imagination.</p>
-    <div class="menu">
-        <a href="books.html">Books</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-        <a href="fun.html">Fun</a>
+
+    <!-- Banner -->
+    <div class="banner"></div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <h1>Welcome to JJ Cruz Books</h1>
+        <p>Explore thrilling stories that challenge your imagination.</p>
+
+        <!-- Navigation Buttons -->
+        <div class="button-container">
+            <a href="books.html"><button>Books</button></a>
+            <a href="about.html"><button>About</button></a>
+            <a href="contact.html"><button>Contact</button></a>
+            <a href="fun.html"><button>Fun</button></a>
+        </div>
     </div>
+
 </body>
 </html>
