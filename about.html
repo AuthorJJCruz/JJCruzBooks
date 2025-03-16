@@ -33,7 +33,8 @@
         .arrow {
             position: absolute;
             font-size: 50px;
-            color: red;
+            color: yellow;
+            font-weight: bold;
             animation: blink 1s infinite alternate;
         }
 
@@ -43,16 +44,23 @@
         }
 
         /* Positioning the Arrows */
+        .arrow-down {
+            left: 50%;
+            top: 70%;
+            transform: translateX(-50%);
+        }
         .arrow-left {
-            left: 30%;
-            top: 55%;
+            left: 40%;
+            top: 65%;
+            transform: rotate(-45deg);
         }
         .arrow-right {
-            right: 30%;
-            top: 55%;
+            right: 40%;
+            top: 65%;
+            transform: rotate(45deg);
         }
 
-        /* Hover Effect for Bio */
+        /* Bio Container - Stays Visible Until Clicking Outside */
         .bio-container {
             position: absolute;
             top: 50%;
@@ -61,10 +69,11 @@
             background: rgba(0, 0, 0, 0.8);
             padding: 20px;
             border-radius: 10px;
-            display: none;
             max-width: 600px;
+            display: none;
         }
 
+        /* Hover Area */
         .hover-area {
             position: absolute;
             top: 50%;
@@ -73,10 +82,6 @@
             height: 300px;
             transform: translate(-50%, -50%);
             cursor: pointer;
-        }
-
-        .hover-area:hover + .bio-container {
-            display: block;
         }
 
         /* Button Styling */
@@ -106,15 +111,16 @@
     <!-- Background Image -->
     <div class="background"></div>
 
-    <!-- Flashing Arrows (Text-Based for Reliability) -->
-    <div class="arrow arrow-left">⬇</div>
-    <div class="arrow arrow-right">⬇</div>
+    <!-- Flashing Yellow Arrows -->
+    <div class="arrow arrow-down">⬇️</div>
+    <div class="arrow arrow-left">⬅️</div>
+    <div class="arrow arrow-right">➡️</div>
 
-    <!-- Hover Area (On the Person) -->
-    <div class="hover-area"></div>
+    <!-- Hover Area (Man in the Picture) -->
+    <div class="hover-area" onclick="showBio()"></div>
 
-    <!-- Bio Container (Revealed on Hover) -->
-    <div class="bio-container">
+    <!-- Bio Container -->
+    <div class="bio-container" id="bio">
         <h1>Author JJ Cruz</h1>
         <p>JJ Cruz is a bold new voice in science fiction, seamlessly blending hard science with gripping narratives that challenge the boundaries of time, fate, and human resilience.</p>
         <p>A lifelong autodidact with an insatiable curiosity for quantum mechanics, anthropology, and theoretical physics, Cruz injects meticulous research into every story, crafting worlds that feel both deeply immersive and unsettlingly plausible.</p>
@@ -123,15 +129,30 @@
         <p>His latest work, <b>Project Crucifix</b>, delves into the collision of quantum physics, government conspiracies, and the enigmatic nature of time itself.</p>
         <p>When he’s not writing, Cruz is immersed in research, dissecting everything from ancient Judean history to the cutting edge of nanotechnology.</p>
         <p>Follow JJ Cruz on social media:</p>
-        <p>📘 Facebook: JJ Cruz</p>
-        <p>🎵 TikTok: @author.jj.cruz</p>
-        <p>📷 Instagram: @jj.cruz.969300</p>
-        <p>▶️ YouTube: Author JJ Cruz</p>
-        <p>📖 Amazon: JJ Cruz’s Author Page</p>
+        <p>📘 Facebook: <a href="https://www.facebook.com" target="_blank">JJ Cruz</a></p>
+        <p>🎵 TikTok: <a href="https://www.tiktok.com" target="_blank">@author.jj.cruz</a></p>
+        <p>📷 Instagram: <a href="https://www.instagram.com" target="_blank">@jj.cruz.969300</a></p>
+        <p>▶️ YouTube: <a href="https://www.youtube.com" target="_blank">Author JJ Cruz</a></p>
+        <p>📖 Amazon: <a href="https://www.amazon.com" target="_blank">JJ Cruz’s Author Page</a></p>
     </div>
 
     <!-- Back to Homepage Button -->
     <a href="index.html"><button class="button back-button">Back to Homepage</button></a>
+
+    <script>
+        function showBio() {
+            document.getElementById("bio").style.display = "block";
+        }
+
+        // Close the bio when clicking outside of it
+        document.addEventListener("click", function(event) {
+            let bio = document.getElementById("bio");
+            let hoverArea = document.querySelector(".hover-area");
+            if (!bio.contains(event.target) && !hoverArea.contains(event.target)) {
+                bio.style.display = "none";
+            }
+        });
+    </script>
 
 </body>
 </html>
