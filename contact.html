@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact JJ Cruz</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+
+        /* Video Background */
+        #video-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        /* Contact Content */
+        .contact-container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        /* Button Styling */
+        #reveal-button {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+
+        #reveal-button:hover {
+            background-color: darkred;
+        }
+
+        /* Hidden Email */
+        #email {
+            display: none;
+            font-size: 20px;
+            margin-top: 10px;
+            color: yellow;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Video Background -->
+    <video autoplay muted loop id="video-bg">
+        <source src="moving.image.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Contact Section -->
+    <div class="contact-container">
+        <h1>Contact JJ Cruz</h1>
+        <p>Click the button below to reveal my email:</p>
+        <button id="reveal-button">Reveal Email</button>
+        <p id="email">jj@authorjjcruzbooks.com</p>
+    </div>
+
+    <script>
+        document.getElementById("reveal-button").addEventListener("click", function() {
+            document.getElementById("email").style.display = "block";
+        });
+    </script>
+
+</body>
+</html>
