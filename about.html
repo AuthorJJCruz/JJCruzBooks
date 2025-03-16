@@ -25,15 +25,15 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('banner#2.png') no-repeat center center/cover;
+            background: url('bannerme.png') no-repeat center center/cover;
             z-index: -1;
         }
 
-        /* Arrow Animation */
+        /* Flashing Arrow Animation */
         .arrow {
             position: absolute;
-            width: 50px;
-            height: 50px;
+            font-size: 50px;
+            color: red;
             animation: blink 1s infinite alternate;
         }
 
@@ -44,13 +44,12 @@
 
         /* Positioning the Arrows */
         .arrow-left {
-            left: 25%;
-            top: 50%;
-            transform: rotate(180deg);
+            left: 30%;
+            top: 55%;
         }
         .arrow-right {
-            right: 25%;
-            top: 50%;
+            right: 30%;
+            top: 55%;
         }
 
         /* Hover Effect for Bio */
@@ -107,9 +106,9 @@
     <!-- Background Image -->
     <div class="background"></div>
 
-    <!-- Flashing Arrows -->
-    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Red_Arrow_Down.svg" class="arrow arrow-left">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Red_Arrow_Down.svg" class="arrow arrow-right">
+    <!-- Flashing Arrows (Text-Based for Reliability) -->
+    <div class="arrow arrow-left">⬇</div>
+    <div class="arrow arrow-right">⬇</div>
 
     <!-- Hover Area (On the Person) -->
     <div class="hover-area"></div>
