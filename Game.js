@@ -34,11 +34,33 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function selectOption(option) {
+        if (option.nextText === 7) {
+            triggerJumpScare();
+        }
         const nextTextNodeId = option.nextText;
         if (option.setState) {
             state = { ...state, ...option.setState };
         }
         showTextNode(nextTextNodeId);
+    }
+
+    function triggerJumpScare() {
+        const jumpScareImage = document.createElement("img");
+        jumpScareImage.src = "scary-image.jpg";
+        jumpScareImage.style.position = "fixed";
+        jumpScareImage.style.top = "0";
+        jumpScareImage.style.left = "0";
+        jumpScareImage.style.width = "100vw";
+        jumpScareImage.style.height = "100vh";
+        jumpScareImage.style.zIndex = "9999";
+        document.body.appendChild(jumpScareImage);
+
+        const screamAudio = new Audio("scream.mp3");
+        screamAudio.play();
+
+        setTimeout(() => {
+            document.body.removeChild(jumpScareImage);
+        }, 2000);
     }
 
     const textNodes = [
@@ -127,3 +149,4 @@ document.addEventListener("DOMContentLoaded", function () {
         startGame();
     });
 });
+
