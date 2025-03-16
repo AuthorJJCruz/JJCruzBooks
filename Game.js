@@ -66,8 +66,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function playHelpMeScream() {
-        const helpMeAudio = new Audio("help-me.mp3");
-        helpMeAudio.play();
+        console.log("HELP ME! scream function triggered"); // Debugging
+        const helpMeAudio = new Audio("https://www.authorjjcruzbooks.com/help-me.mp3");
+
+        helpMeAudio.play()
+            .then(() => console.log("Audio played successfully"))
+            .catch(error => console.error("Audio playback error:", error));
     }
 
     const textNodes = [
