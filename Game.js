@@ -34,11 +34,16 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function selectOption(option) {
+        if (option.text === "Step through the door") {
+            window.location.href = "distorted.html"; // Redirects to distorted main page
+            return;
+        }
         if (option.nextText === 7) {
             triggerJumpScare();
         } else if (option.nextText === 5) {
             playHelpMeScream();
         }
+        
         const nextTextNodeId = option.nextText;
         if (option.setState) {
             state = { ...state, ...option.setState };
