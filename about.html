@@ -32,7 +32,7 @@
         /* Flashing Arrow Animation */
         .arrow {
             position: absolute;
-            font-size: 50px;
+            font-size: 60px;
             color: yellow;
             font-weight: bold;
             animation: blink 1s infinite alternate;
@@ -43,21 +43,21 @@
             100% { opacity: 0.3; }
         }
 
-        /* Positioning the Arrows */
-        .arrow-down {
-            left: 50%;
-            top: 70%;
-            transform: translateX(-50%);
-        }
+        /* Positioning the Arrows (Above the Man) */
         .arrow-left {
-            left: 40%;
-            top: 65%;
-            transform: rotate(-45deg);
+            left: 42%;
+            top: 35%;
+            transform: rotate(0deg);
+        }
+        .arrow-center {
+            left: 50%;
+            top: 30%;
+            transform: translateX(-50%) rotate(0deg);
         }
         .arrow-right {
-            right: 40%;
-            top: 65%;
-            transform: rotate(45deg);
+            right: 42%;
+            top: 35%;
+            transform: rotate(0deg);
         }
 
         /* Bio Container - Stays Visible Until Clicking Outside */
@@ -111,10 +111,10 @@
     <!-- Background Image -->
     <div class="background"></div>
 
-    <!-- Flashing Yellow Arrows -->
-    <div class="arrow arrow-down">⬇️</div>
-    <div class="arrow arrow-left">⬅️</div>
-    <div class="arrow arrow-right">➡️</div>
+    <!-- Flashing Yellow Arrows ABOVE the Man, Pointing Down -->
+    <div class="arrow arrow-left">⬇️</div>
+    <div class="arrow arrow-center">⬇️</div>
+    <div class="arrow arrow-right">⬇️</div>
 
     <!-- Hover Area (Man in the Picture) -->
     <div class="hover-area" onclick="showBio()"></div>
