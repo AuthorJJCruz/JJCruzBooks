@@ -36,6 +36,8 @@ document.addEventListener("DOMContentLoaded", function () {
     function selectOption(option) {
         if (option.nextText === 7) {
             triggerJumpScare();
+        } else if (option.nextText === 5) {
+            playHelpMeScream();
         }
         const nextTextNodeId = option.nextText;
         if (option.setState) {
@@ -61,6 +63,11 @@ document.addEventListener("DOMContentLoaded", function () {
         setTimeout(() => {
             document.body.removeChild(jumpScareImage);
         }, 2000);
+    }
+
+    function playHelpMeScream() {
+        const helpMeAudio = new Audio("help-me.mp3");
+        helpMeAudio.play();
     }
 
     const textNodes = [
@@ -149,4 +156,3 @@ document.addEventListener("DOMContentLoaded", function () {
         startGame();
     });
 });
-
