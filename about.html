@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About JJ Cruz</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+
+        /* Background Image */
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('banner#2.png') no-repeat center center/cover;
+            z-index: -1;
+        }
+
+        /* Arrow Animation */
+        .arrow {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            animation: blink 1s infinite alternate;
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            100% { opacity: 0.3; }
+        }
+
+        /* Positioning the Arrows */
+        .arrow-left {
+            left: 25%;
+            top: 50%;
+            transform: rotate(180deg);
+        }
+        .arrow-right {
+            right: 25%;
+            top: 50%;
+        }
+
+        /* Hover Effect for Bio */
+        .bio-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            display: none;
+            max-width: 600px;
+        }
+
+        .hover-area {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 150px;
+            height: 300px;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+        }
+
+        .hover-area:hover + .bio-container {
+            display: block;
+        }
+
+        /* Button Styling */
+        .button {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+
+        .button:hover {
+            background-color: darkred;
+        }
+
+        .back-button {
+            position: absolute;
+            bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Image -->
+    <div class="background"></div>
+
+    <!-- Flashing Arrows -->
+    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Red_Arrow_Down.svg" class="arrow arrow-left">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Red_Arrow_Down.svg" class="arrow arrow-right">
+
+    <!-- Hover Area (On the Person) -->
+    <div class="hover-area"></div>
+
+    <!-- Bio Container (Revealed on Hover) -->
+    <div class="bio-container">
+        <h1>Author JJ Cruz</h1>
+        <p>JJ Cruz is a bold new voice in science fiction, seamlessly blending hard science with gripping narratives that challenge the boundaries of time, fate, and human resilience.</p>
+        <p>A lifelong autodidact with an insatiable curiosity for quantum mechanics, anthropology, and theoretical physics, Cruz injects meticulous research into every story, crafting worlds that feel both deeply immersive and unsettlingly plausible.</p>
+        <p>Raised in the tough streets of Rochester, New York, and now based in Houston, Texas, Cruz’s journey from a blue-collar upbringing to a successful career in facilities management is a testament to his relentless drive.</p>
+        <p>His writing mirrors this tenacity—raw, unflinching, and thought-provoking. Influenced by the styles of Stephen King, Gustav Hasford, Scott O'Dell, and other cinematic authors, Cruz delivers narratives that balance high-intensity action with profound existential questions and absolute truth.</p>
+        <p>His latest work, <b>Project Crucifix</b>, delves into the collision of quantum physics, government conspiracies, and the enigmatic nature of time itself.</p>
+        <p>When he’s not writing, Cruz is immersed in research, dissecting everything from ancient Judean history to the cutting edge of nanotechnology.</p>
+        <p>Follow JJ Cruz on social media:</p>
+        <p>📘 Facebook: JJ Cruz</p>
+        <p>🎵 TikTok: @author.jj.cruz</p>
+        <p>📷 Instagram: @jj.cruz.969300</p>
+        <p>▶️ YouTube: Author JJ Cruz</p>
+        <p>📖 Amazon: JJ Cruz’s Author Page</p>
+    </div>
+
+    <!-- Back to Homepage Button -->
+    <a href="index.html"><button class="button back-button">Back to Homepage</button></a>
+
+</body>
+</html>
