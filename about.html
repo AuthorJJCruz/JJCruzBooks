@@ -33,9 +33,10 @@
         .arrow {
             position: absolute;
             font-size: 60px;
-            color: yellow;
+            color: #FFD700; /* Bright Yellow */
             font-weight: bold;
             animation: blink 1s infinite alternate;
+            text-shadow: 2px 2px 4px black; /* Makes it pop */
         }
 
         @keyframes blink {
@@ -43,20 +44,20 @@
             100% { opacity: 0.3; }
         }
 
-        /* Positioning the Arrows (Above the Man) */
+        /* Lowered Arrows Closer to the Man */
         .arrow-left {
             left: 42%;
-            top: 35%;
+            top: 50%;  /* Lowered */
             transform: rotate(0deg);
         }
         .arrow-center {
             left: 50%;
-            top: 30%;
+            top: 45%;  /* Lowered */
             transform: translateX(-50%) rotate(0deg);
         }
         .arrow-right {
             right: 42%;
-            top: 35%;
+            top: 50%;  /* Lowered */
             transform: rotate(0deg);
         }
 
@@ -111,7 +112,7 @@
     <!-- Background Image -->
     <div class="background"></div>
 
-    <!-- Flashing Yellow Arrows ABOVE the Man, Pointing Down -->
+    <!-- Flashing Bright Yellow Arrows -->
     <div class="arrow arrow-left">⬇️</div>
     <div class="arrow arrow-center">⬇️</div>
     <div class="arrow arrow-right">⬇️</div>
