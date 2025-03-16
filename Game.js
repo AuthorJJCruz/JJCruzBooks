@@ -34,8 +34,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function selectOption(option) {
-        if (option.text === "Step through the door") {
-            window.location.href = "distorted.html"; // Redirects to distorted main page
+        if (option.nextText === -1) {
+            // Redirect to the distorted version of the site
+            window.location.href = "distorted.html";
             return;
         }
         if (option.nextText === 7) {
@@ -43,7 +44,6 @@ document.addEventListener("DOMContentLoaded", function () {
         } else if (option.nextText === 5) {
             playHelpMeScream();
         }
-        
         const nextTextNodeId = option.nextText;
         if (option.setState) {
             state = { ...state, ...option.setState };
@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
             id: 1,
             text: "You wake up in a dimly lit room. You don't remember how you got here. A door stands in front of you, slightly ajar.",
             options: [
-                { text: "Step through the door", nextText: "distorted" },
+                { text: "Step through the door", nextText: -1 }, // Redirects to distorted.html
                 { text: "Look around for clues", nextText: 3 }
             ]
         },
