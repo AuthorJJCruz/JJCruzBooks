@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function playHelpMeScream() {
         console.log("HELP ME! scream function triggered"); // Debugging
-        const helpMeAudio = new Audio("https://www.authorjjcruzbooks.com/help-me.mp3");
+        const helpMeAudio = new Audio("helpme.mp3");
 
         helpMeAudio.play()
             .then(() => console.log("Audio played successfully"))
