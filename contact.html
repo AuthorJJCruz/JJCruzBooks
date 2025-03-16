@@ -16,6 +16,7 @@
             text-align: center;
             font-family: Arial, sans-serif;
             color: white;
+            flex-direction: column;
         }
 
         /* Video Background */
@@ -37,7 +38,7 @@
         }
 
         /* Button Styling */
-        #reveal-button {
+        .button {
             background-color: red;
             color: white;
             border: none;
@@ -48,7 +49,7 @@
             margin-top: 15px;
         }
 
-        #reveal-button:hover {
+        .button:hover {
             background-color: darkred;
         }
 
@@ -58,6 +59,11 @@
             font-size: 20px;
             margin-top: 10px;
             color: yellow;
+        }
+
+        /* Back to Homepage Button */
+        .back-button {
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -73,8 +79,11 @@
     <div class="contact-container">
         <h1>Contact JJ Cruz</h1>
         <p>Click the button below to reveal my email:</p>
-        <button id="reveal-button">Reveal Email</button>
+        <button id="reveal-button" class="button">Reveal Email</button>
         <p id="email">jj@authorjjcruzbooks.com</p>
+
+        <!-- Back to Homepage Button -->
+        <a href="index.html"><button class="button back-button">Back to Homepage</button></a>
     </div>
 
     <script>
