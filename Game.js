@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
             id: 1,
             text: "You wake up in a dimly lit room. You don't remember how you got here. A door stands in front of you, slightly ajar.",
             options: [
-                { text: "Step through the door", nextText: 2 },
+                { text: "Step through the door", nextText: "distorted" },
                 { text: "Look around for clues", nextText: 3 }
             ]
         },
