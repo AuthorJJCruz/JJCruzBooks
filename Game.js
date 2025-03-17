@@ -4,10 +4,19 @@ document.addEventListener("DOMContentLoaded", function () {
     const optionsContainer = document.getElementById("options-container");
     
     let state = {};
+    let backgroundMusic = new Audio("websitemusic.mp3");  // Background music file
+
+    // Ensure background music loops
+    backgroundMusic.loop = true;
 
     function startGame() {
         state = {};
         showTextNode(1);
+
+        // Try playing background music when game starts (fix autoplay issues)
+        backgroundMusic.play().catch(error => {
+            console.error("Autoplay prevented. User interaction needed.");
+        });
     }
 
     function showTextNode(nodeIndex) {
