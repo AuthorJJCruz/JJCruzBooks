@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function startGame() {
         state = {};
         showTextNode(1);
+
         backgroundMusic.play().catch(error => console.error("Autoplay prevented."));
     }
 
@@ -17,19 +18,17 @@ document.addEventListener("DOMContentLoaded", function () {
         const textNode = textNodes.find(node => node.id === nodeIndex);
         textElement.innerText = textNode.text;
 
-        // Ensure options container is visible
+        // **Ensure options are displayed**
         optionsContainer.style.display = "block";
-        
-        while (optionsContainer.firstChild) {
-            optionsContainer.removeChild(optionsContainer.firstChild);
-        }
+        optionsContainer.innerHTML = ""; // Clear old buttons
 
         textNode.options.forEach(option => {
             if (showOption(option)) {
                 const button = document.createElement("button");
                 button.innerText = option.text;
                 button.classList.add("btn");
-                button.style.display = "inline-block"; // Ensure visible
+                button.style.display = "inline-block"; // **Ensure visibility**
+                button.style.margin = "10px"; // Spacing for buttons
                 button.addEventListener("click", () => selectOption(option));
                 optionsContainer.appendChild(button);
             }
@@ -62,9 +61,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function playVideoAndShowChoice() {
-        console.log("Video function triggered!");
+        console.log("Playing Video Full Screen!");
 
-        // Create full-screen video container
+        // **Ensure video exists and loads**
         const videoContainer = document.createElement("div");
         videoContainer.style.position = "fixed";
         videoContainer.style.top = "0";
@@ -74,38 +73,34 @@ document.addEventListener("DOMContentLoaded", function () {
         videoContainer.style.zIndex = "9999";
         videoContainer.style.backgroundColor = "black";
 
-        // Create video element
         const video = document.createElement("video");
-        video.src = "Videowebsite.mp4"; // Ensure this file exists and is accessible
+        video.src = "Videowebsite.mp4";  // **Ensure this file is uploaded**
         video.style.width = "100%";
         video.style.height = "100%";
         video.style.objectFit = "cover";
         video.autoplay = true;
         video.controls = false;
-        video.setAttribute("playsinline", "");
-        
-        // Append video to container
+        video.setAttribute("playsinline", ""); 
+
         videoContainer.appendChild(video);
         document.body.appendChild(videoContainer);
 
-        // Ensure video plays after user interaction
+        // **Ensure autoplay works after user clicks once**
         video.play().catch(error => {
-            console.error("Autoplay blocked! Requiring user interaction.");
-            alert("Click anywhere to play the video.");
-            document.body.addEventListener("click", () => {
-                video.play();
-            }, { once: true });
+            console.error("Autoplay blocked. Waiting for user click.");
+            alert("Click anywhere to start the video.");
+            document.body.addEventListener("click", () => video.play(), { once: true });
         });
 
-        // Remove video and continue to next ID when finished
+        // **Remove video and continue game**
         video.onended = function () {
             document.body.removeChild(videoContainer);
-            console.log("Video ended. Moving to ID 12.");
             showTextNode(12);
         };
     }
 
     function triggerJumpScare() {
+        console.log("Jump Scare Triggered!");
         const jumpScareImage = document.createElement("img");
         jumpScareImage.src = "scary-image.jpg";
         jumpScareImage.style.position = "fixed";
@@ -113,18 +108,28 @@ document.addEventListener("DOMContentLoaded", function () {
         jumpScareImage.style.height = "100vh";
         jumpScareImage.style.zIndex = "9999";
         document.body.appendChild(jumpScareImage);
+
         const screamAudio = new Audio("scream.mp3");
         screamAudio.play();
-        setTimeout(() => { document.body.removeChild(jumpScareImage); }, 2000);
+
+        setTimeout(() => { 
+            document.body.removeChild(jumpScareImage);
+            showTextNode(1); // Restart game
+        }, 2000);
     }
 
     function playHelpMeScream() {
+        console.log("HELP ME! scream triggered.");
         const helpMeAudio = new Audio("helpme.mp3");
-        helpMeAudio.play().catch(error => console.error("Audio playback error:", error));
+
+        helpMeAudio.play().catch(error => console.error("Audio error:", error));
     }
 
     const textNodes = [
         { id: 1, text: "You wake up in a dimly lit room...", options: [{ text: "Step through the door", nextText: 2 }, { text: "Look around", nextText: 3 }] },
+        { id: 2, text: "You step through but find yourself back...", options: [{ text: "Try again", nextText: 4 }, { text: "Scream for help", nextText: 5 }] },
+        { id: 3, text: "You find a mirror. Your face distorts...", options: [{ text: "Touch the mirror", nextText: -1 }, { text: "Turn away", nextText: 2 }] },
+        { id: 4, text: "The walls seem closer now...", options: [{ text: "Look behind you", nextText: 7 }, { text: "Ignore it", nextText: 2 }] },
         { id: 7, text: "A shadowy figure appears...", options: [{ text: "Accept the paradox", nextText: 11 }, { text: "Refuse", nextText: 2 }] },
         { id: 12, text: "Was that really worth it?", options: [{ text: "Yes", nextText: 13 }, { text: "No", nextText: 14 }] },
         { id: 13, text: "You have embraced the truth.", options: [{ text: "Continue to Books Page", nextText: "books.html" }] },
