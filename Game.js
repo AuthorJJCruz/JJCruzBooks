@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const gameContainer = document.getElementById("game-container");
     const textElement = document.getElementById("text");
     const optionsContainer = document.getElementById("options-container");
-    
+
     let state = {};
     let backgroundMusic = new Audio("websitemusic.mp3");
     backgroundMusic.loop = true;
@@ -16,16 +16,20 @@ document.addEventListener("DOMContentLoaded", function () {
     function showTextNode(nodeIndex) {
         const textNode = textNodes.find(node => node.id === nodeIndex);
         textElement.innerText = textNode.text;
+
+        // Ensure options container is visible
+        optionsContainer.style.display = "block";
         
         while (optionsContainer.firstChild) {
             optionsContainer.removeChild(optionsContainer.firstChild);
         }
-        
+
         textNode.options.forEach(option => {
             if (showOption(option)) {
                 const button = document.createElement("button");
                 button.innerText = option.text;
                 button.classList.add("btn");
+                button.style.display = "inline-block"; // Ensure visible
                 button.addEventListener("click", () => selectOption(option));
                 optionsContainer.appendChild(button);
             }
@@ -33,22 +37,32 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function selectOption(option) {
-        if (option.nextText === -1) { window.location.href = "distorted.html"; return; }
-        if (option.nextText === 7) { triggerJumpScare(); }
-        else if (option.nextText === 5) { playHelpMeScream(); }
-        else if (option.nextText === 11) { 
-            console.log("Playing full-screen video..."); // Debug log
+        if (option.nextText === -1) { 
+            window.location.href = "distorted.html"; 
+            return; 
+        }
+        if (option.nextText === 7) { 
+            triggerJumpScare(); 
+            return; 
+        }
+        if (option.nextText === 5) { 
+            playHelpMeScream(); 
+            return; 
+        }
+        if (option.nextText === 11) { 
             playVideoAndShowChoice(); 
             return; 
         }
-        
+
         const nextTextNodeId = option.nextText;
-        if (option.setState) { state = { ...state, ...option.setState }; }
+        if (option.setState) { 
+            state = { ...state, ...option.setState }; 
+        }
         showTextNode(nextTextNodeId);
     }
 
     function playVideoAndShowChoice() {
-        console.log("Video function triggered!"); // Debugging log
+        console.log("Video function triggered!");
 
         // Create full-screen video container
         const videoContainer = document.createElement("div");
@@ -62,15 +76,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Create video element
         const video = document.createElement("video");
-        video.src = "Videowebsite.mp4";
+        video.src = "Videowebsite.mp4"; // Ensure this file exists and is accessible
         video.style.width = "100%";
         video.style.height = "100%";
         video.style.objectFit = "cover";
         video.autoplay = true;
         video.controls = false;
-        video.muted = false;
         video.setAttribute("playsinline", "");
-
+        
         // Append video to container
         videoContainer.appendChild(video);
         document.body.appendChild(videoContainer);
@@ -118,5 +131,7 @@ document.addEventListener("DOMContentLoaded", function () {
         { id: 14, text: "You made the wrong choice.", options: [{ text: "Back to start", nextText: 1 }] }
     ];
 
-    document.getElementById("fun-button").addEventListener("click", function() { startGame(); });
+    document.getElementById("fun-button").addEventListener("click", function() { 
+        startGame(); 
+    });
 });
