@@ -40,10 +40,22 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function selectOption(option) {
-        if (option.nextText === -1) { window.location.href = "distorted.html"; return; }
-        if (option.nextText === 7) { triggerJumpScare(); return; }
-        if (option.nextText === 5) { playHelpMeScream(); return; }
-        if (option.nextText === 11) { playVideoAndShowChoice(); return; }
+        if (option.nextText === -1) { 
+            window.location.href = "distorted.html"; 
+            return; 
+        }
+        if (option.nextText === 7) { 
+            triggerJumpScare(); 
+            return; 
+        }
+        if (option.nextText === 5) { 
+            playHelpMeScream(); 
+            return; 
+        }
+        if (option.nextText === 11) { 
+            playVideoAndShowChoice(); 
+            return; 
+        }
 
         const nextTextNodeId = option.nextText;
         if (option.setState) { state = { ...state, ...option.setState }; }
@@ -63,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
         videoContainer.style.backgroundColor = "black";
 
         const video = document.createElement("video");
-        video.src = "https://raw.githubusercontent.com/AuthorJJCruzBooks/main/Videowebsite.mp4"; // **Replace with actual URL**
+        video.src = "Videowebsite.mp4"; 
         video.style.width = "100%";
         video.style.height = "100%";
         video.style.objectFit = "cover";
@@ -91,18 +103,37 @@ document.addEventListener("DOMContentLoaded", function () {
         const jumpScareImage = document.createElement("img");
         jumpScareImage.src = "scary-image.jpg";
         jumpScareImage.style.position = "fixed";
+        jumpScareImage.style.top = "50%";
+        jumpScareImage.style.left = "50%";
+        jumpScareImage.style.transform = "translate(-50%, -50%)"; 
         jumpScareImage.style.width = "100vw";
         jumpScareImage.style.height = "100vh";
+        jumpScareImage.style.objectFit = "contain"; 
         jumpScareImage.style.zIndex = "9999";
+
         document.body.appendChild(jumpScareImage);
+
         const screamAudio = new Audio("scream.mp3");
         screamAudio.play();
-        setTimeout(() => { document.body.removeChild(jumpScareImage); showTextNode(1); }, 2000);
+
+        setTimeout(() => {
+            document.body.removeChild(jumpScareImage);
+            showTextNode(1); 
+        }, 2000);
     }
 
     function playHelpMeScream() {
+        console.log("HELP ME! scream function triggered");
         const helpMeAudio = new Audio("helpme.mp3");
-        helpMeAudio.play().catch(error => console.error("Audio playback error:", error));
+
+        helpMeAudio.play()
+            .then(() => console.log("Audio played successfully"))
+            .catch(error => console.error("Audio playback error:", error));
+
+        // Continue game after the audio finishes
+        helpMeAudio.onended = function () {
+            showTextNode(8); 
+        };
     }
 
     const textNodes = [
@@ -111,6 +142,8 @@ document.addEventListener("DOMContentLoaded", function () {
         { id: 3, text: "You find a mirror. Your face distorts...", options: [{ text: "Touch the mirror", nextText: -1 }, { text: "Turn away", nextText: 2 }] },
         { id: 4, text: "The walls seem closer now...", options: [{ text: "Look behind you", nextText: 7 }, { text: "Ignore it", nextText: 2 }] },
         { id: 7, text: "A shadowy figure appears...", options: [{ text: "Accept the paradox", nextText: 11 }, { text: "Refuse", nextText: 2 }] },
+        { id: 8, text: "A voice whispers: 'You already know...'", options: [{ text: "Open the next door", nextText: 10 }, { text: "Wake up", nextText: 1 }] },
+        { id: 10, text: "Reality distorts. You see flashes of timelines.", options: [{ text: "Embrace the truth", nextText: 1 }] },
         { id: 11, text: "Reality distorts. Video begins...", options: [] }, 
         { id: 12, text: "Was that really worth it?", options: [{ text: "Yes", nextText: 13 }, { text: "No", nextText: 14 }] },
         { id: 13, text: "You have embraced the truth.", options: [{ text: "Continue to Books Page", nextText: "books.html" }] },
