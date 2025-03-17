@@ -36,7 +36,11 @@ document.addEventListener("DOMContentLoaded", function () {
         if (option.nextText === -1) { window.location.href = "distorted.html"; return; }
         if (option.nextText === 7) { triggerJumpScare(); }
         else if (option.nextText === 5) { playHelpMeScream(); }
-        else if (option.nextText === 11) { playVideoAndShowChoice(); return; }
+        else if (option.nextText === 11) { 
+            console.log("Playing full-screen video..."); // Debug log
+            playVideoAndShowChoice(); 
+            return; 
+        }
         
         const nextTextNodeId = option.nextText;
         if (option.setState) { state = { ...state, ...option.setState }; }
@@ -44,21 +48,46 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function playVideoAndShowChoice() {
+        console.log("Video function triggered!"); // Debugging log
+
+        // Create full-screen video container
         const videoContainer = document.createElement("div");
         videoContainer.style.position = "fixed";
+        videoContainer.style.top = "0";
+        videoContainer.style.left = "0";
         videoContainer.style.width = "100vw";
         videoContainer.style.height = "100vh";
         videoContainer.style.zIndex = "9999";
         videoContainer.style.backgroundColor = "black";
+
+        // Create video element
         const video = document.createElement("video");
         video.src = "Videowebsite.mp4";
         video.style.width = "100%";
         video.style.height = "100%";
+        video.style.objectFit = "cover";
         video.autoplay = true;
+        video.controls = false;
+        video.muted = false;
+        video.setAttribute("playsinline", "");
+
+        // Append video to container
         videoContainer.appendChild(video);
         document.body.appendChild(videoContainer);
+
+        // Ensure video plays after user interaction
+        video.play().catch(error => {
+            console.error("Autoplay blocked! Requiring user interaction.");
+            alert("Click anywhere to play the video.");
+            document.body.addEventListener("click", () => {
+                video.play();
+            }, { once: true });
+        });
+
+        // Remove video and continue to next ID when finished
         video.onended = function () {
             document.body.removeChild(videoContainer);
+            console.log("Video ended. Moving to ID 12.");
             showTextNode(12);
         };
     }
@@ -83,19 +112,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const textNodes = [
         { id: 1, text: "You wake up in a dimly lit room...", options: [{ text: "Step through the door", nextText: 2 }, { text: "Look around", nextText: 3 }] },
-        { id: 2, text: "You step through but find yourself back...", options: [{ text: "Try again", nextText: 4 }, { text: "Scream for help", nextText: 5 }] },
-        { id: 3, text: "You find a mirror. Your face distorts...", options: [{ text: "Touch the mirror", nextText: -1 }, { text: "Turn away", nextText: 2 }] },
-        { id: 4, text: "The walls seem closer now...", options: [{ text: "Look behind you", nextText: 7 }, { text: "Ignore it", nextText: 2 }] },
         { id: 7, text: "A shadowy figure appears...", options: [{ text: "Accept the paradox", nextText: 11 }, { text: "Refuse", nextText: 2 }] },
         { id: 12, text: "Was that really worth it?", options: [{ text: "Yes", nextText: 13 }, { text: "No", nextText: 14 }] },
-        { id: 13, text: "You have embraced the truth.", options: [{ text: "Continue to Books Page", nextText: "books.html" }, { text: "Turn back", nextText: 1 }] },
-        { id: 14, text: "You made the wrong choice.", options: [{ text: "Back to start", nextText: 1 }, { text: "Run blindly", nextText: 15 }] },
-        { id: 15, text: "A red door appears before you...", options: [{ text: "Enter", nextText: 16 }, { text: "Ignore", nextText: 4 }] },
-        { id: 16, text: "Inside is a chair... and you sitting in it.", options: [{ text: "Approach", nextText: 17 }, { text: "Back away", nextText: 6 }] },
-        { id: 17, text: "The walls start whispering your name...", options: [{ text: "Listen", nextText: 18 }, { text: "Run", nextText: 9 }] },
-        { id: 18, text: "A note appears: 'Don't trust your choices.'", options: [{ text: "Read it", nextText: 19 }, { text: "Ignore it", nextText: 10 }] },
-        { id: 19, text: "You wake up in a laboratory. A man watches you.", options: [{ text: "Speak to him", nextText: 20 }, { text: "Run", nextText: 1 }] },
-        { id: 20, text: "'You've finally broken the cycle.'", options: [{ text: "Embrace reality", nextText: 1 }, { text: "Reject it", nextText: 15 }] }
+        { id: 13, text: "You have embraced the truth.", options: [{ text: "Continue to Books Page", nextText: "books.html" }] },
+        { id: 14, text: "You made the wrong choice.", options: [{ text: "Back to start", nextText: 1 }] }
     ];
 
     document.getElementById("fun-button").addEventListener("click", function() { startGame(); });
