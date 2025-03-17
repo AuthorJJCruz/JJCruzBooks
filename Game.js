@@ -4,19 +4,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const optionsContainer = document.getElementById("options-container");
     
     let state = {};
-    let backgroundMusic = new Audio("websitemusic.mp3");  // Background music file
-
-    // Ensure background music loops
+    let backgroundMusic = new Audio("websitemusic.mp3");
     backgroundMusic.loop = true;
 
     function startGame() {
         state = {};
         showTextNode(1);
-
-        // Try playing background music when game starts (fix autoplay issues)
-        backgroundMusic.play().catch(error => {
-            console.error("Autoplay prevented. User interaction needed.");
-        });
+        backgroundMusic.play().catch(error => console.error("Autoplay prevented."));
     }
 
     function showTextNode(nodeIndex) {
@@ -38,139 +32,71 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    function showOption(option) {
-        return option.requiredState == null || option.requiredState(state);
+    function selectOption(option) {
+        if (option.nextText === -1) { window.location.href = "distorted.html"; return; }
+        if (option.nextText === 7) { triggerJumpScare(); }
+        else if (option.nextText === 5) { playHelpMeScream(); }
+        else if (option.nextText === 11) { playVideoAndShowChoice(); return; }
+        
+        const nextTextNodeId = option.nextText;
+        if (option.setState) { state = { ...state, ...option.setState }; }
+        showTextNode(nextTextNodeId);
     }
 
-    function selectOption(option) {
-        if (option.nextText === -1) {
-            // Redirect now happens when touching the mirror instead of stepping through the door
-            window.location.href = "distorted.html";
-            return;
-        }
-        if (option.nextText === 7) {
-            triggerJumpScare();
-        } else if (option.nextText === 5) {
-            playHelpMeScream();
-        }
-        const nextTextNodeId = option.nextText;
-        if (option.setState) {
-            state = { ...state, ...option.setState };
-        }
-        showTextNode(nextTextNodeId);
+    function playVideoAndShowChoice() {
+        const videoContainer = document.createElement("div");
+        videoContainer.style.position = "fixed";
+        videoContainer.style.width = "100vw";
+        videoContainer.style.height = "100vh";
+        videoContainer.style.zIndex = "9999";
+        videoContainer.style.backgroundColor = "black";
+        const video = document.createElement("video");
+        video.src = "Videowebsite.mp4";
+        video.style.width = "100%";
+        video.style.height = "100%";
+        video.autoplay = true;
+        videoContainer.appendChild(video);
+        document.body.appendChild(videoContainer);
+        video.onended = function () {
+            document.body.removeChild(videoContainer);
+            showTextNode(12);
+        };
     }
 
     function triggerJumpScare() {
         const jumpScareImage = document.createElement("img");
         jumpScareImage.src = "scary-image.jpg";
         jumpScareImage.style.position = "fixed";
-        jumpScareImage.style.top = "0";
-        jumpScareImage.style.left = "0";
         jumpScareImage.style.width = "100vw";
         jumpScareImage.style.height = "100vh";
         jumpScareImage.style.zIndex = "9999";
         document.body.appendChild(jumpScareImage);
-
         const screamAudio = new Audio("scream.mp3");
         screamAudio.play();
-
-        setTimeout(() => {
-            document.body.removeChild(jumpScareImage);
-        }, 2000);
+        setTimeout(() => { document.body.removeChild(jumpScareImage); }, 2000);
     }
 
     function playHelpMeScream() {
-        console.log("HELP ME! scream function triggered"); // Debugging
         const helpMeAudio = new Audio("helpme.mp3");
-
-        helpMeAudio.play()
-            .then(() => console.log("Audio played successfully"))
-            .catch(error => console.error("Audio playback error:", error));
+        helpMeAudio.play().catch(error => console.error("Audio playback error:", error));
     }
 
     const textNodes = [
-        {
-            id: 1,
-            text: "You wake up in a dimly lit room. You don't remember how you got here. A door stands in front of you, slightly ajar.",
-            options: [
-                { text: "Step through the door", nextText: 2 },  // No longer redirects to distorted.html
-                { text: "Look around for clues", nextText: 3 }
-            ]
-        },
-        {
-            id: 2,
-            text: "You step through the door, but suddenly find yourself back in the same room. Something feels... wrong.",
-            options: [
-                { text: "Try again", nextText: 4 },
-                { text: "Scream for help", nextText: 5 }
-            ]
-        },
-        {
-            id: 3,
-            text: "You find a mirror. As you look at your reflection, your face distorts. You hear a whisper: 'Remember.'",
-            options: [
-                { text: "Touch the mirror", nextText: -1 },  // Redirect to distorted.html now happens here
-                { text: "Turn away", nextText: 2 }
-            ]
-        },
-        {
-            id: 4,
-            text: "You keep stepping through, looping back. The walls seem closer now. A phrase is written in blood: 'THEY ARE WATCHING.'",
-            options: [
-                { text: "Look behind you", nextText: 7 },
-                { text: "Ignore it", nextText: 2 }
-            ]
-        },
-        {
-            id: 5,
-            text: "Your scream echoes, but something answers back in your own voice: 'Shhh. They’ll hear you.'",
-            options: [
-                { text: "Run", nextText: 2 },
-                { text: "Ask who’s there", nextText: 8 }
-            ]
-        },
-        {
-            id: 6,
-            text: "Your hand touches the mirror. A surge of memories flood your mind: experiments, time loops, Project Crucifix. The mirror cracks. You are not alone.",
-            options: [
-                { text: "Step through the broken mirror", nextText: 9 },
-                { text: "Run away", nextText: 2 }
-            ]
-        },
-        {
-            id: 7,
-            text: "You turn around. A shadowy figure stands in the corner. It has your face. It smiles. 'We meet again.'",
-            options: [
-                { text: "Accept the paradox", nextText: 10 },
-                { text: "Refuse to believe it", nextText: 2 }
-            ]
-        },
-        {
-            id: 8,
-            text: "A voice whispers: 'You already know.' Your past choices have been leading to this moment.",
-            options: [
-                { text: "Open the next door", nextText: 10 },
-                { text: "Wake up", nextText: 1 }
-            ]
-        },
-        {
-            id: 9,
-            text: "You step through and suddenly wake up... but in another version of yourself. The cycle continues.",
-            options: [
-                { text: "Restart", nextText: 1 }
-            ]
-        },
-        {
-            id: 10,
-            text: "Reality distorts. You see flashes of different timelines. The experiment is complete. But was it yours, or theirs?",
-            options: [
-                { text: "Embrace the truth", nextText: 1 }
-            ]
-        }
+        { id: 1, text: "You wake up in a dimly lit room...", options: [{ text: "Step through the door", nextText: 2 }, { text: "Look around", nextText: 3 }] },
+        { id: 2, text: "You step through but find yourself back...", options: [{ text: "Try again", nextText: 4 }, { text: "Scream for help", nextText: 5 }] },
+        { id: 3, text: "You find a mirror. Your face distorts...", options: [{ text: "Touch the mirror", nextText: -1 }, { text: "Turn away", nextText: 2 }] },
+        { id: 4, text: "The walls seem closer now...", options: [{ text: "Look behind you", nextText: 7 }, { text: "Ignore it", nextText: 2 }] },
+        { id: 7, text: "A shadowy figure appears...", options: [{ text: "Accept the paradox", nextText: 11 }, { text: "Refuse", nextText: 2 }] },
+        { id: 12, text: "Was that really worth it?", options: [{ text: "Yes", nextText: 13 }, { text: "No", nextText: 14 }] },
+        { id: 13, text: "You have embraced the truth.", options: [{ text: "Continue to Books Page", nextText: "books.html" }] },
+        { id: 14, text: "You made the wrong choice.", options: [{ text: "Back to start", nextText: 1 }] },
+        { id: 15, text: "A red door appears before you...", options: [{ text: "Enter", nextText: 16 }, { text: "Ignore", nextText: 4 }] },
+        { id: 16, text: "Inside is a chair... and you sitting in it.", options: [{ text: "Approach", nextText: 17 }, { text: "Back away", nextText: 6 }] },
+        { id: 17, text: "The walls start whispering your name...", options: [{ text: "Listen", nextText: 18 }, { text: "Run", nextText: 9 }] },
+        { id: 18, text: "A note appears: 'Don't trust your choices.'", options: [{ text: "Read it", nextText: 19 }, { text: "Ignore it", nextText: 10 }] },
+        { id: 19, text: "You wake up in a laboratory. A man watches you.", options: [{ text: "Speak to him", nextText: 20 }, { text: "Run", nextText: 1 }] },
+        { id: 20, text: "'You've finally broken the cycle.'", options: [{ text: "Embrace reality", nextText: 1 }] }
     ];
 
-    // Ensure this runs when the 'Fun Button' is clicked and the page loads
-    document.getElementById("fun-button").addEventListener("click", function() {
-        startGame();
-    });
+    document.getElementById("fun-button").addEventListener("click", function() { startGame(); });
 });
