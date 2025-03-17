@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function selectOption(option) {
         if (option.nextText === -1) {
-            // Redirect to the distorted version of the site
+            // Redirect now happens when touching the mirror instead of stepping through the door
             window.location.href = "distorted.html";
             return;
         }
@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
             id: 1,
             text: "You wake up in a dimly lit room. You don't remember how you got here. A door stands in front of you, slightly ajar.",
             options: [
-                { text: "Step through the door", nextText: -1 }, // Redirects to distorted.html
+                { text: "Step through the door", nextText: 2 },  // No longer redirects to distorted.html
                 { text: "Look around for clues", nextText: 3 }
             ]
         },
@@ -109,7 +109,7 @@ document.addEventListener("DOMContentLoaded", function () {
             id: 3,
             text: "You find a mirror. As you look at your reflection, your face distorts. You hear a whisper: 'Remember.'",
             options: [
-                { text: "Touch the mirror", nextText: 6 },
+                { text: "Touch the mirror", nextText: -1 },  // Redirect to distorted.html now happens here
                 { text: "Turn away", nextText: 2 }
             ]
         },
