@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Continue game after the audio finishes
         helpMeAudio.onended = function () {
-            showTextNode(8); 
+            showTextNode(8);  // Redirects properly after scream
         };
     }
 
