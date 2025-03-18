@@ -1,4 +1,118 @@
-<!-- TikTok Pixel Code Start -->
+// add this before event code to all pages where PII data postback is expected and appropriate 
+ttq.identify({
+	"email": "<hashed_email_address>", // string. The email of the customer if available. It must be hashed with SHA-256 on the client side.
+	"phone_number": "<hashed_phone_number>", // string. The phone number of the customer if available. It must be hashed with SHA-256 on the client side.
+	"external_id": "<hashed_external_id>" // string. Any unique identifier, such as loyalty membership IDs, user IDs, and external cookie IDs.It must be hashed with SHA-256 on the client side.
+});
+
+ttq.track('ViewContent', {
+	"contents": [
+		{
+			"content_id": "<content_identifier>", // string. ID of the product. Example: "1077218".
+			"content_type": "<content_type>", // string. Either product or product_group.
+			"content_name": "<content_name>" // string. The name of the page or product. Example: "shirt".
+		}
+	],
+	"value": "<content_value>", // number. Value of the order or items sold. Example: 100.
+	"currency": "<content_currency>" // string. The 4217 currency code. Example: "USD".
+});
+
+ttq.track('AddToWishlist', {
+	"contents": [
+		{
+			"content_id": "<content_identifier>", // string. ID of the product. Example: "1077218".
+			"content_type": "<content_type>", // string. Either product or product_group.
+			"content_name": "<content_name>" // string. The name of the page or product. Example: "shirt".
+		}
+	],
+	"value": "<content_value>", // number. Value of the order or items sold. Example: 100.
+	"currency": "<content_currency>" // string. The 4217 currency code. Example: "USD".
+});
+
+ttq.track('Search', {
+	"contents": [
+		{
+			"content_id": "<content_identifier>", // string. ID of the product. Example: "1077218".
+			"content_type": "<content_type>", // string. Either product or product_group.
+			"content_name": "<content_name>" // string. The name of the page or product. Example: "shirt".
+		}
+	],
+	"value": "<content_value>", // number. Value of the order or items sold. Example: 100.
+	"currency": "<content_currency>", // string. The 4217 currency code. Example: "USD".
+	"search_string": "<search_keywords>" // string. The word or phrase used to search. Example: "SAVE10COUPON".
+});
+
+ttq.track('AddPaymentInfo', {
+	"contents": [
+		{
+			"content_id": "<content_identifier>", // string. ID of the product. Example: "1077218".
+			"content_type": "<content_type>", // string. Either product or product_group.
+			"content_name": "<content_name>" // string. The name of the page or product. Example: "shirt".
+		}
+	],
+	"value": "<content_value>", // number. Value of the order or items sold. Example: 100.
+	"currency": "<content_currency>" // string. The 4217 currency code. Example: "USD".
+});
+
+ttq.track('AddToCart', {
+	"contents": [
+		{
+			"content_id": "<content_identifier>", // string. ID of the product. Example: "1077218".
+			"content_type": "<content_type>", // string. Either product or product_group.
+			"content_name": "<content_name>" // string. The name of the page or product. Example: "shirt".
+		}
+	],
+	"value": "<content_value>", // number. Value of the order or items sold. Example: 100.
+	"currency": "<content_currency>" // string. The 4217 currency code. Example: "USD".
+});
+
+ttq.track('InitiateCheckout', {
+	"contents": [
+		{
+			"content_id": "<content_identifier>", // string. ID of the product. Example: "1077218".
+			"content_type": "<content_type>", // string. Either product or product_group.
+			"content_name": "<content_name>" // string. The name of the page or product. Example: "shirt".
+		}
+	],
+	"value": "<content_value>", // number. Value of the order or items sold. Example: 100.
+	"currency": "<content_currency>" // string. The 4217 currency code. Example: "USD".
+});
+
+ttq.track('PlaceAnOrder', {
+	"contents": [
+		{
+			"content_id": "<content_identifier>", // string. ID of the product. Example: "1077218".
+			"content_type": "<content_type>", // string. Either product or product_group.
+			"content_name": "<content_name>" // string. The name of the page or product. Example: "shirt".
+		}
+	],
+	"value": "<content_value>", // number. Value of the order or items sold. Example: 100.
+	"currency": "<content_currency>" // string. The 4217 currency code. Example: "USD".
+});
+
+ttq.track('CompleteRegistration', {
+	"contents": [
+		{
+			"content_id": "<content_identifier>", // string. ID of the product. Example: "1077218".
+			"content_type": "<content_type>", // string. Either product or product_group.
+			"content_name": "<content_name>" // string. The name of the page or product. Example: "shirt".
+		}
+	],
+	"value": "<content_value>", // number. Value of the order or items sold. Example: 100.
+	"currency": "<content_currency>" // string. The 4217 currency code. Example: "USD".
+});
+
+ttq.track('CompletePayment', {
+	"contents": [
+		{
+			"content_id": "<content_identifier>", // string. ID of the product. Example: "1077218".
+			"content_type": "<content_type>", // string. Either product or product_group.
+			"content_name": "<content_name>" // string. The name of the page or product. Example: "shirt".
+		}
+	],
+	"value": "<content_value>", // number. Value of the order or items sold. Example: 100.
+	"currency": "<content_currency>" // string. The 4217 currency code. Example: "USD".
+});<!-- TikTok Pixel Code Start -->
 <script>
 !function (w, d, t) {
   w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
