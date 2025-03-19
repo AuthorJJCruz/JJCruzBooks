@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (searchLabel && searchInput) {
         searchLabel.setAttribute("for", searchInput.id || "dynamic-search-input");
-        if (!searchInput.id) searchInput.id = "dynamic-search-input";
+        if (!searchInput.id) searchInput.id = "dynamic-search-input"; // Assign ID if missing
     } else {
         console.warn("Search label or input field not found.");
     }
@@ -31,22 +31,13 @@ document.addEventListener("DOMContentLoaded", function () {
         state = {};
         showTextNode(1);
 
-        try {
-            backgroundMusic.play().catch(error => {
-                console.error("Autoplay prevented or audio file missing:", error);
-            });
-        } catch (error) {
-            console.error("Background music error:", error);
-        }
+        backgroundMusic.play().catch(error => {
+            console.error("Autoplay prevented:", error);
+        });
     }
 
     function showTextNode(nodeIndex) {
         console.log(`Displaying text node ${nodeIndex}`);
-
-        if (!Array.isArray(textNodes)) {
-            console.error("Error: textNodes is not defined or is not an array.");
-            return;
-        }
 
         const textNode = textNodes.find(node => node.id === nodeIndex);
         if (!textNode) {
@@ -55,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         textElement.innerText = textNode.text;
-        optionsContainer.innerHTML = "";
+        optionsContainer.innerHTML = ""; // Clear options
 
         textNode.options.forEach(option => {
             if (showOption(option)) {
@@ -117,13 +108,13 @@ document.addEventListener("DOMContentLoaded", function () {
         Object.assign(video.style, { width: "100%", height: "100%", objectFit: "cover" });
         video.autoplay = true;
         video.controls = false;
-        video.muted = true;
+        video.muted = true; // Ensures autoplay works
 
         videoContainer.appendChild(video);
         document.body.appendChild(videoContainer);
 
         video.play().then(() => {
-            video.muted = false;
+            video.muted = false; // Unmute after playback starts
         }).catch(error => {
             console.error("Autoplay blocked. Waiting for user click.");
             alert("Click anywhere to start the video.");
@@ -135,7 +126,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         video.onerror = function () {
             console.error("Video file failed to load. Check the file path.");
-            alert("The video could not be loaded. Please check your connection or try again.");
         };
 
         video.onended = function () {
@@ -145,7 +135,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (funButton) {
-        funButton.disabled = false;
         funButton.addEventListener("click", () => {
             console.log("Fun button clicked!");
             startGame();
