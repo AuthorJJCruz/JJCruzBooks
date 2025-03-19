@@ -1,34 +1,61 @@
 document.addEventListener("DOMContentLoaded", function () {
+    console.log("Game script loaded!"); // Debugging
+
     const gameContainer = document.getElementById("game-container");
     const textElement = document.getElementById("text");
     const optionsContainer = document.getElementById("options-container");
     const funButton = document.getElementById("fun-button");
-    
+    const searchLabel = document.querySelector("label.AppHeader-searchInput");
+    const searchInput = document.querySelector("input.AppHeader-searchField");
+
     if (!gameContainer || !textElement || !optionsContainer || !funButton) {
         console.error("One or more necessary elements are missing from the DOM.");
         return;
     }
 
+    if (searchLabel && searchInput) {
+        searchLabel.setAttribute("for", searchInput.id || "dynamic-search-input");
+        if (!searchInput.id) searchInput.id = "dynamic-search-input";
+    } else {
+        console.warn("Search label or input field not found.");
+    }
+
+    console.log("All necessary elements found!");
+
     let state = {};
-    let backgroundMusic = new Audio("websitemusic.mp3");  
+    let backgroundMusic = new Audio("websitemusic.mp3");
     backgroundMusic.loop = true;
 
     function startGame() {
+        console.log("Game started!");
         state = {};
         showTextNode(1);
-        backgroundMusic.play().catch(error => console.error("Autoplay prevented.", error));
+
+        try {
+            backgroundMusic.play().catch(error => {
+                console.error("Autoplay prevented or audio file missing:", error);
+            });
+        } catch (error) {
+            console.error("Background music error:", error);
+        }
     }
 
     function showTextNode(nodeIndex) {
+        console.log(`Displaying text node ${nodeIndex}`);
+
+        if (!Array.isArray(textNodes)) {
+            console.error("Error: textNodes is not defined or is not an array.");
+            return;
+        }
+
         const textNode = textNodes.find(node => node.id === nodeIndex);
-        
         if (!textNode) {
             console.error(`Text node with ID ${nodeIndex} not found.`);
             return;
         }
-        
+
         textElement.innerText = textNode.text;
-        optionsContainer.innerHTML = ""; // Clear previous options
+        optionsContainer.innerHTML = "";
 
         textNode.options.forEach(option => {
             if (showOption(option)) {
@@ -39,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 optionsContainer.appendChild(button);
             }
         });
-        
+
         optionsContainer.style.display = "block";
     }
 
@@ -66,11 +93,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 playHelpMeScream();
                 return;
             case 11:
-                console.log("Executing playVideoAndShowChoice()..."); // Debug
+                console.log("Executing playVideoAndShowChoice()...");
                 playVideoAndShowChoice();
                 return;
         }
-        
+
         if (option.setState && typeof option.setState === "object") {
             state = { ...state, ...option.setState };
         }
@@ -90,13 +117,13 @@ document.addEventListener("DOMContentLoaded", function () {
         Object.assign(video.style, { width: "100%", height: "100%", objectFit: "cover" });
         video.autoplay = true;
         video.controls = false;
-        video.muted = true; // Ensures autoplay works
+        video.muted = true;
 
         videoContainer.appendChild(video);
         document.body.appendChild(videoContainer);
 
         video.play().then(() => {
-            video.muted = false; // Unmute after playback starts
+            video.muted = false;
         }).catch(error => {
             console.error("Autoplay blocked. Waiting for user click.");
             alert("Click anywhere to start the video.");
@@ -108,6 +135,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         video.onerror = function () {
             console.error("Video file failed to load. Check the file path.");
+            alert("The video could not be loaded. Please check your connection or try again.");
         };
 
         video.onended = function () {
@@ -116,39 +144,12 @@ document.addEventListener("DOMContentLoaded", function () {
         };
     }
 
-    function triggerJumpScare() {
-        const jumpScareImage = document.createElement("img");
-        jumpScareImage.src = "scary-image.jpg";
-        Object.assign(jumpScareImage.style, {
-            position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: "100vw", height: "100vh", objectFit: "contain", zIndex: "9999"
-        });
-
-        document.body.appendChild(jumpScareImage);
-
-        const screamAudio = new Audio("scream.mp3");
-        screamAudio.play().catch(error => console.error("Audio playback error:", error));
-
-        setTimeout(() => {
-            document.body.removeChild(jumpScareImage);
-            showTextNode(1);
-        }, 2000);
-    }
-
-    function playHelpMeScream() {
-        console.log("HELP ME! scream function triggered");
-        const helpMeAudio = new Audio("helpme.mp3");
-        
-        helpMeAudio.play()
-            .then(() => console.log("Audio played successfully"))
-            .catch(error => console.error("Audio playback error:", error));
-
-        helpMeAudio.onended = function () {
-            showTextNode(8);
-        };
-    }
-
     if (funButton) {
-        funButton.addEventListener("click", startGame);
+        funButton.disabled = false;
+        funButton.addEventListener("click", () => {
+            console.log("Fun button clicked!");
+            startGame();
+        });
     } else {
         console.warn("fun-button not found on the page.");
     }
