@@ -48,6 +48,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function selectOption(option) {
+        console.log(`Option selected: ${option.text}, nextText: ${option.nextText}`);
+
         if (typeof option.nextText === "string") {
             window.location.href = option.nextText;
             return;
@@ -64,6 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 playHelpMeScream();
                 return;
             case 11:
+                console.log("Executing playVideoAndShowChoice()..."); // Debug
                 playVideoAndShowChoice();
                 return;
         }
@@ -87,17 +90,25 @@ document.addEventListener("DOMContentLoaded", function () {
         Object.assign(video.style, { width: "100%", height: "100%", objectFit: "cover" });
         video.autoplay = true;
         video.controls = false;
-        video.muted = false;
-        video.setAttribute("playsinline", "");
+        video.muted = true; // Ensures autoplay works
 
         videoContainer.appendChild(video);
         document.body.appendChild(videoContainer);
 
-        video.play().catch(error => {
+        video.play().then(() => {
+            video.muted = false; // Unmute after playback starts
+        }).catch(error => {
             console.error("Autoplay blocked. Waiting for user click.");
             alert("Click anywhere to start the video.");
-            document.body.addEventListener("click", () => video.play(), { once: true });
+            document.body.addEventListener("click", () => {
+                video.muted = false;
+                video.play();
+            }, { once: true });
         });
+
+        video.onerror = function () {
+            console.error("Video file failed to load. Check the file path.");
+        };
 
         video.onended = function () {
             document.body.removeChild(videoContainer);
@@ -135,16 +146,6 @@ document.addEventListener("DOMContentLoaded", function () {
             showTextNode(8);
         };
     }
-
-    const textNodes = [
-        { id: 1, text: "You wake up in a dimly lit room...", options: [{ text: "Step through the door", nextText: 2 }, { text: "Look around", nextText: 3 }] },
-        { id: 2, text: "You step through but find yourself back...", options: [{ text: "Try again", nextText: 4 }, { text: "Scream for help", nextText: 5 }] },
-        { id: 3, text: "You find a mirror. Your face distorts...", options: [{ text: "Touch the mirror", nextText: -1 }, { text: "Turn away", nextText: 2 }] },
-        { id: 4, text: "The walls seem closer now...", options: [{ text: "Look behind you", nextText: 7 }, { text: "Ignore it", nextText: 2 }] },
-        { id: 7, text: "A shadowy figure appears...", options: [{ text: "Accept the paradox", nextText: 11 }, { text: "Refuse", nextText: 2 }] },
-        { id: 8, text: "A voice whispers: 'You already know...'", options: [{ text: "Open the next door", nextText: 10 }, { text: "Wake up", nextText: 1 }] },
-        { id: 10, text: "Reality distorts. You see flashes of timelines.", options: [{ text: "Embrace the truth", nextText: 1 }] }
-    ];
 
     if (funButton) {
         funButton.addEventListener("click", startGame);
