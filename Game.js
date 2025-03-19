@@ -104,4 +104,10 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
         console.warn("fun-button not found on the page.");
     }
+
+    const textNodes = [
+        { id: 1, text: "You wake up in a dimly lit room...", options: [{ text: "Step through the door", nextText: 2 }, { text: "Look around", nextText: 3 }] },
+        { id: 2, text: "You step through but find yourself back...", options: [{ text: "Try again", nextText: 4 }, { text: "Scream for help", nextText: 5 }] },
+        { id: 3, text: "You find a mirror. Your face distorts...", options: [{ text: "Touch the mirror", nextText: -1 }, { text: "Turn away", nextText: 2 }] }
+    ];
 });
