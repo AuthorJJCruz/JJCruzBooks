@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    console.log("Game script loaded!"); // Debugging
+    console.log("Game script loaded!");
 
     const gameContainer = document.getElementById("game-container");
     const textElement = document.getElementById("text");
@@ -24,10 +24,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
         try {
             backgroundMusic.play().catch(error => {
-                console.error("Autoplay prevented or audio file missing:", error);
+                console.error("Autoplay prevented:", error);
             });
         } catch (error) {
-            console.error("Background music error:", error);
+            console.error("Audio playback error:", error);
         }
     }
 
@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        textElement.innerText = textNode.text;
+        textElement.innerHTML = `<span style="font-size: 24px; color: white;">${textNode.text}</span>`;
         optionsContainer.innerHTML = "";
 
         textNode.options.forEach(option => {
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function selectOption(option) {
-        console.log(`Option selected: ${option.text}, nextText: ${option.nextText}`);
+        console.log(`Option selected: ${option.text}`);
 
         if (typeof option.nextText === "string") {
             window.location.href = option.nextText;
@@ -81,11 +81,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 triggerJumpScare();
                 return;
             case 5:
-                playHelpMeScream();
+                playScaryScream();
                 return;
             case 11:
-                console.log("Executing playVideoAndShowChoice()...");
-                playVideoAndShowChoice();
+                playVideoAndRedirect();
                 return;
         }
 
@@ -105,9 +104,90 @@ document.addEventListener("DOMContentLoaded", function () {
         console.warn("fun-button not found on the page.");
     }
 
+    function playVideoAndRedirect() {
+        let videoElement = document.createElement("video");
+        videoElement.src = "videowebsite.mp4";
+        videoElement.autoplay = true;
+        videoElement.controls = false;
+        videoElement.style.position = "fixed";
+        videoElement.style.top = "0";
+        videoElement.style.left = "0";
+        videoElement.style.width = "100vw";
+        videoElement.style.height = "100vh";
+        videoElement.style.zIndex = "9999";
+        document.body.appendChild(videoElement);
+
+        videoElement.onended = function () {
+            document.body.removeChild(videoElement);
+            window.location.href = "index.html"; // Redirect to the first question
+        };
+    }
+
+    function triggerJumpScare() {
+        let jumpScareImage = document.createElement("img");
+        jumpScareImage.src = "jumpscare.png";
+        jumpScareImage.style.position = "fixed";
+        jumpScareImage.style.top = "0";
+        jumpScareImage.style.left = "0";
+        jumpScareImage.style.width = "100vw";
+        jumpScareImage.style.height = "100vh";
+        jumpScareImage.style.zIndex = "9999";
+        document.body.appendChild(jumpScareImage);
+
+        setTimeout(() => {
+            document.body.removeChild(jumpScareImage);
+            showTextNode(1);
+        }, 2000);
+    }
+
+    function playScaryScream() {
+        let scream = new Audio("scream.mp3");
+        scream.play();
+        setTimeout(() => {
+            showTextNode(1);
+        }, 2000);
+    }
+
     const textNodes = [
-        { id: 1, text: "You wake up in a dimly lit room...", options: [{ text: "Step through the door", nextText: 2 }, { text: "Look around", nextText: 3 }] },
-        { id: 2, text: "You step through but find yourself back...", options: [{ text: "Try again", nextText: 4 }, { text: "Scream for help", nextText: 5 }] },
-        { id: 3, text: "You find a mirror. Your face distorts...", options: [{ text: "Touch the mirror", nextText: -1 }, { text: "Turn away", nextText: 2 }] }
+        {
+            id: 1,
+            text: "If you met another version of yourself from a parallel timeline, would you shake hands… or eliminate the anomaly?",
+            options: [
+                { text: "I would shake hands", nextText: 2 },
+                { text: "I would eliminate the anomaly", nextText: 11 }
+            ]
+        },
+        {
+            id: 2,
+            text: "What if your entire life was just a loop—how would you know if this wasn’t your first time reading this?",
+            options: [
+                { text: "This question is dumb as fuck", nextText: -1 },
+                { text: "I don’t know because I am just an ant in this galaxy", nextText: 3 }
+            ]
+        },
+        {
+            id: 3,
+            text: "If you could erase one event in history, would you risk the consequences of the paradox?",
+            options: [
+                { text: "Hell Yes", nextText: -1 },
+                { text: "Hell No", nextText: 4 }
+            ]
+        },
+        {
+            id: 4,
+            text: "If your childhood home was haunted, would you rather move… or stay and find out why it’s haunted?",
+            options: [
+                { text: "I'd rather move", nextText: 7 },
+                { text: "I’ll stay", nextText: 7 }
+            ]
+        },
+        {
+            id: 5,
+            text: "Imagine the worst nightmare you’ve ever had. Are you sure it wasn’t real?",
+            options: [
+                { text: "Yes, I'm sure", nextText: 11 },
+                { text: "No, I'm not sure", nextText: -1 }
+            ]
+        }
     ];
 });
