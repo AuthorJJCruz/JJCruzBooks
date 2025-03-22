@@ -139,21 +139,29 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function triggerJumpScare() {
-        let jumpScareImage = document.createElement("img");
-        jumpScareImage.src = "jumpscare.png";
-        jumpScareImage.style.position = "fixed";
-        jumpScareImage.style.top = "0";
-        jumpScareImage.style.left = "0";
-        jumpScareImage.style.width = "100vw";
-        jumpScareImage.style.height = "100vh";
-        jumpScareImage.style.zIndex = "9999";
-        document.body.appendChild(jumpScareImage);
+    // Show scary image
+    let jumpScareImage = document.createElement("img");
+    jumpScareImage.src = "scary-image.jpg";
+    jumpScareImage.style.position = "fixed";
+    jumpScareImage.style.top = "0";
+    jumpScareImage.style.left = "0";
+    jumpScareImage.style.width = "100vw";
+    jumpScareImage.style.height = "100vh";
+    jumpScareImage.style.zIndex = "9999";
+    document.body.appendChild(jumpScareImage);
 
-        setTimeout(() => {
-            document.body.removeChild(jumpScareImage);
-            showTextNode(1);
-        }, 2000);
-    }
+    // Play scream audio
+    let scream = new Audio("scream.mp3");
+    scream.play().catch(err => {
+        console.error("Scream playback error:", err);
+    });
+
+    // Remove image after 2 seconds and go back to question 1
+    setTimeout(() => {
+        document.body.removeChild(jumpScareImage);
+        showTextNode(1);
+    }, 2000);
+}
 
     function playScaryScream() {
         let scream = new Audio("scream.mp3");
