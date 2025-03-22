@@ -82,17 +82,25 @@ document.addEventListener("DOMContentLoaded", function () {
                 fetch("https://ip-api.com/json/")
                     .then(res => res.json())
                     .then(data => {
+                        console.log("Location API response:", data);
+
+                        const city = data.city || "your city";
+                        const region = data.regionName || "";
+                        const country = data.country || "";
+
+                        const locationString = `${city}, ${region}, ${country}`.replace(/(, )+/g, ", ").replace(/^, |, $/g, "");
+
                         const warning = document.createElement("div");
-                        warning.innerText = `Are you sure that staying in ${data.city} is safe?`;
+                        warning.innerText = `Are you sure that staying in ${locationString} is safe?`;
                         warning.style.position = "fixed";
                         warning.style.top = "50%";
                         warning.style.left = "50%";
                         warning.style.transform = "translate(-50%, -50%)";
                         warning.style.fontSize = "48px";
-                        warning.style.color = "red";
+                        warning.style.color = "black";
                         warning.style.fontWeight = "bold";
                         warning.style.zIndex = "10000";
-                        warning.style.textShadow = "2px 2px 10px black";
+                        warning.style.textShadow = "2px 2px 10px white";
                         document.body.appendChild(warning);
 
                         const laugh = new Audio("creepylaugh.mp3");
@@ -105,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     })
                     .catch(error => {
                         console.error("Location fetch error:", error);
-                        triggerJumpScare();
+                        triggerJumpScare(); // Fallback
                     });
                 return;
 
