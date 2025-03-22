@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function playVideoAndRedirect() {
         let videoElement = document.createElement("video");
-        videoElement.src = "videowebsite.mp4";
+        videoElement.src = "Videowebsite.mp4";
         videoElement.autoplay = true;
         videoElement.controls = false;
         videoElement.style.position = "fixed";
@@ -141,7 +141,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function playScaryScream() {
-        let scream = new Audio("scream.mp3");
+        let scream = new Audio("Scream.mp3");
         scream.play();
         setTimeout(() => {
             showTextNode(1);
