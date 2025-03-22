@@ -104,38 +104,38 @@ document.addEventListener("DOMContentLoaded", function () {
         console.warn("fun-button not found on the page.");
     }
 
+    // ✅ FIXED: This function was incorrectly placed inside another function before
     function playVideoAndRedirect() {
-    let videoElement = document.createElement("video");
-    videoElement.src = "videowebsite.mp4"; // Confirm this works directly in your browser!
-    videoElement.autoplay = true;
-    videoElement.muted = true;
-    videoElement.controls = false;
-    videoElement.playsInline = true;
+        let videoElement = document.createElement("video");
+        videoElement.src = "videowebsite.mp4";
+        videoElement.autoplay = true;
+        videoElement.muted = true;
+        videoElement.controls = false;
+        videoElement.playsInline = true;
 
-    videoElement.style.position = "fixed";
-    videoElement.style.top = "0";
-    videoElement.style.left = "0";
-    videoElement.style.width = "100vw";
-    videoElement.style.height = "100vh";
-    videoElement.style.zIndex = "9999";
-    videoElement.style.objectFit = "cover";
-    videoElement.style.backgroundColor = "black"; // In case video fails to load
+        videoElement.style.position = "fixed";
+        videoElement.style.top = "0";
+        videoElement.style.left = "0";
+        videoElement.style.width = "100vw";
+        videoElement.style.height = "100vh";
+        videoElement.style.zIndex = "9999";
+        videoElement.style.objectFit = "cover";
+        videoElement.style.backgroundColor = "black";
 
-    document.body.appendChild(videoElement);
+        document.body.appendChild(videoElement);
 
-    // Try to play it manually and handle autoplay issues
-    videoElement.play().catch(error => {
-        console.error("Video failed to autoplay:", error);
-        alert("There was an issue playing the video. Redirecting...");
-        document.body.removeChild(videoElement);
-        window.location.href = "index.html";
-    });
+        // Manual play fallback with graceful error handling
+        videoElement.play().catch(error => {
+            console.error("Video failed to autoplay:", error);
+            alert("There was an issue playing the video. Redirecting...");
+            document.body.removeChild(videoElement);
+            window.location.href = "index.html";
+        });
 
-    videoElement.onended = function () {
-        document.body.removeChild(videoElement);
-        window.location.href = "index.html";
-    };
-};
+        videoElement.onended = function () {
+            document.body.removeChild(videoElement);
+            window.location.href = "index.html";
+        };
     }
 
     function triggerJumpScare() {
