@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
             case -1:
                 window.location.href = "distorted.html";
                 return;
-            case 7:
+         
                 case 7:
     fetch("http://ip-api.com/json/")
         .then(res => res.json())
