@@ -106,20 +106,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function playVideoAndRedirect() {
         let videoElement = document.createElement("video");
-        videoElement.src = "Videowebsite.mp4";
+        videoElement.src = "videowebsite.mp4"; // Make sure the file is lowercase
         videoElement.autoplay = true;
+        videoElement.muted = true; // Required for autoplay
         videoElement.controls = false;
+        videoElement.playsInline = true;
+
         videoElement.style.position = "fixed";
         videoElement.style.top = "0";
         videoElement.style.left = "0";
         videoElement.style.width = "100vw";
         videoElement.style.height = "100vh";
         videoElement.style.zIndex = "9999";
+        videoElement.style.objectFit = "cover";
+
         document.body.appendChild(videoElement);
 
         videoElement.onended = function () {
             document.body.removeChild(videoElement);
-            window.location.href = "index.html"; // Redirect to the first question
+            window.location.href = "index.html"; // Redirect to main page
         };
     }
 
@@ -141,7 +146,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function playScaryScream() {
-        let scream = new Audio("Scream.mp3");
+        let scream = new Audio("scream.mp3");
         scream.play();
         setTimeout(() => {
             showTextNode(1);
