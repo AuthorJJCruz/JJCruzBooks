@@ -77,43 +77,42 @@ document.addEventListener("DOMContentLoaded", function () {
             case -1:
                 window.location.href = "distorted.html";
                 return;
-         
-                case 7:
-    fetch("http://ip-api.com/json/")
-        .then(res => res.json())
-        .then(data => {
-            // 1. Create red warning message
-            const warning = document.createElement("div");
-            warning.innerText = `Are you sure that staying in ${data.city} is safe?`;
-            warning.style.position = "fixed";
-            warning.style.top = "50%";
-            warning.style.left = "50%";
-            warning.style.transform = "translate(-50%, -50%)";
-            warning.style.fontSize = "48px";
-            warning.style.color = "red";
-            warning.style.fontWeight = "bold";
-            warning.style.zIndex = "10000";
-            warning.style.textShadow = "2px 2px 10px black";
-            document.body.appendChild(warning);
 
-            // 2. Play creepy laugh
-            const laugh = new Audio("creepylaugh.mp3"); // Make sure this file is in your repo!
-            laugh.play().catch(err => console.error("Laugh audio error:", err));
+            case 7:
+                fetch("https://ip-api.com/json/")
+                    .then(res => res.json())
+                    .then(data => {
+                        const warning = document.createElement("div");
+                        warning.innerText = `Are you sure that staying in ${data.city} is safe?`;
+                        warning.style.position = "fixed";
+                        warning.style.top = "50%";
+                        warning.style.left = "50%";
+                        warning.style.transform = "translate(-50%, -50%)";
+                        warning.style.fontSize = "48px";
+                        warning.style.color = "red";
+                        warning.style.fontWeight = "bold";
+                        warning.style.zIndex = "10000";
+                        warning.style.textShadow = "2px 2px 10px black";
+                        document.body.appendChild(warning);
 
-            // 3. Clear it after 3 seconds then show jump scare
-            setTimeout(() => {
-                document.body.removeChild(warning);
-                triggerJumpScare();
-            }, 3000);
-        })
-        .catch(error => {
-            console.error("Location fetch error:", error);
-            triggerJumpScare(); // Fallback
-        });
-    return;
-case 5:
+                        const laugh = new Audio("creepylaugh.mp3");
+                        laugh.play().catch(err => console.error("Laugh audio error:", err));
+
+                        setTimeout(() => {
+                            document.body.removeChild(warning);
+                            triggerJumpScare();
+                        }, 3000);
+                    })
+                    .catch(error => {
+                        console.error("Location fetch error:", error);
+                        triggerJumpScare();
+                    });
+                return;
+
+            case 5:
                 playScaryScream();
                 return;
+
             case 11:
                 playVideoAndRedirect();
                 return;
@@ -135,7 +134,6 @@ case 5:
         console.warn("fun-button not found on the page.");
     }
 
-    // ✅ FIXED: This function was incorrectly placed inside another function before
     function playVideoAndRedirect() {
         let videoElement = document.createElement("video");
         videoElement.src = "videowebsite.mp4";
@@ -155,7 +153,6 @@ case 5:
 
         document.body.appendChild(videoElement);
 
-        // Manual play fallback with graceful error handling
         videoElement.play().catch(error => {
             console.error("Video failed to autoplay:", error);
             alert("There was an issue playing the video. Redirecting...");
@@ -170,29 +167,26 @@ case 5:
     }
 
     function triggerJumpScare() {
-    // Show scary image
-    let jumpScareImage = document.createElement("img");
-    jumpScareImage.src = "scary-image.jpg";
-    jumpScareImage.style.position = "fixed";
-    jumpScareImage.style.top = "0";
-    jumpScareImage.style.left = "0";
-    jumpScareImage.style.width = "100vw";
-    jumpScareImage.style.height = "100vh";
-    jumpScareImage.style.zIndex = "9999";
-    document.body.appendChild(jumpScareImage);
+        let jumpScareImage = document.createElement("img");
+        jumpScareImage.src = "scary-image.jpg";
+        jumpScareImage.style.position = "fixed";
+        jumpScareImage.style.top = "0";
+        jumpScareImage.style.left = "0";
+        jumpScareImage.style.width = "100vw";
+        jumpScareImage.style.height = "100vh";
+        jumpScareImage.style.zIndex = "9999";
+        document.body.appendChild(jumpScareImage);
 
-    // Play scream audio
-    let scream = new Audio("scream.mp3");
-    scream.play().catch(err => {
-        console.error("Scream playback error:", err);
-    });
+        let scream = new Audio("scream.mp3");
+        scream.play().catch(err => {
+            console.error("Scream playback error:", err);
+        });
 
-    // Remove image after 2 seconds and go back to question 1
-    setTimeout(() => {
-        document.body.removeChild(jumpScareImage);
-        showTextNode(1);
-    }, 2000);
-}
+        setTimeout(() => {
+            document.body.removeChild(jumpScareImage);
+            showTextNode(1);
+        }, 2000);
+    }
 
     function playScaryScream() {
         let scream = new Audio("scream.mp3");
