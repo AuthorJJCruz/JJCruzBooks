@@ -90,6 +90,22 @@
             border-radius: 5px;
             border: none;
         }
+        .glow-pulse {
+            animation: glowPulse 2s ease-in-out infinite;
+            color: #ffffff;
+            text-shadow: 0 0 5px #ff5e5e, 0 0 10px #ff5e5e, 0 0 20px #ff5e5e;
+        }
+        @keyframes glowPulse {
+            0% {
+                text-shadow: 0 0 5px #ff5e5e, 0 0 10px #ff5e5e, 0 0 20px #ff5e5e;
+            }
+            50% {
+                text-shadow: 0 0 10px #ff3333, 0 0 20px #ff3333, 0 0 30px #ff3333;
+            }
+            100% {
+                text-shadow: 0 0 5px #ff5e5e, 0 0 10px #ff5e5e, 0 0 20px #ff5e5e;
+            }
+        }
     </style>
 </head>
 <body>
@@ -143,7 +159,7 @@
             <!-- Featured Author Recommendation -->
             <div class="book">
                 <img src="stephen.king.jpg" alt="You Like It Darker">
-                <h3>JJ's Weekly Recommendation</h3>
+                <h3 class="glow-pulse">JJ's Weekly Recommendation</h3>
                 <p><strong>Stephen King - You Like It Darker</strong><br>A brilliant, brooding collection of short stories that dive into humanity’s shadow side. Recommended for fans of twisted truths and layered chills.</p>
                 <button class="buy-button" onclick="window.open('https://www.amazon.com/You-Like-Darker-Stephen-King/dp/1399725106')">Check It Out</button>
             </div>
