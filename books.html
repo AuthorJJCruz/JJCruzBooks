@@ -91,10 +91,47 @@
             border: none;
         }
         .glow-pulse {
-            animation: glowPulse 2s ease-in-out infinite;
-            color: #ffffff;
-            text-shadow: 0 0 5px #ff5e5e, 0 0 10px #ff5e5e, 0 0 20px #ff5e5e;
-        }
+    animation: glowPulse 1.5s ease-in-out infinite;
+    color: #fff;
+    text-shadow:
+        0 0 10px #ff3b3b,
+        0 0 20px #ff3b3b,
+        0 0 30px #ff3b3b,
+        0 0 40px #ff1a1a,
+        0 0 70px #ff1a1a,
+        0 0 80px #ff1a1a;
+}
+
+@keyframes glowPulse {
+    0% {
+        text-shadow:
+            0 0 5px #ff3b3b,
+            0 0 10px #ff3b3b,
+            0 0 20px #ff3b3b,
+            0 0 30px #ff1a1a,
+            0 0 50px #ff1a1a,
+            0 0 60px #ff1a1a;
+    }
+    50% {
+        text-shadow:
+            0 0 15px #ff4d4d,
+            0 0 30px #ff4d4d,
+            0 0 40px #ff0000,
+            0 0 50px #ff0000,
+            0 0 70px #ff0000,
+            0 0 90px #ff0000;
+    }
+    100% {
+        text-shadow:
+            0 0 5px #ff3b3b,
+            0 0 10px #ff3b3b,
+            0 0 20px #ff3b3b,
+            0 0 30px #ff1a1a,
+            0 0 50px #ff1a1a,
+            0 0 60px #ff1a1a;
+    }
+}
+
         @keyframes glowPulse {
             0% {
                 text-shadow: 0 0 5px #ff5e5e, 0 0 10px #ff5e5e, 0 0 20px #ff5e5e;
