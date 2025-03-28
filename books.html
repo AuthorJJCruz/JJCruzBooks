@@ -18,7 +18,7 @@
             color: white;
         }
         .overlay {
-            background: rgba(0, 0, 0, 0.7); /* Dark overlay for readability */
+            background: rgba(0, 0, 0, 0.7);
             position: absolute;
             top: 0;
             left: 0;
@@ -94,7 +94,7 @@
 </head>
 <body>
 
-    <div class="overlay"></div> <!-- Dark overlay for readability -->
+    <div class="overlay"></div>
     
     <div class="content">
         <h1>My Books</h1>
@@ -104,33 +104,33 @@
         <div class="book-container">
             <!-- Project Crucifix -->
             <div class="book">
-    <img src="projectcrucifixcover.jpg" alt="Project Crucifix">
-    <h3>Project Crucifix</h3>
-    <select id="projectCrucifix">
-        <option value="https://www.amazon.com/dp/B0DZ6XL93G?maas=maas_adg_61CE335A93FE593C4ABB17D4DF20B721_afap_abs&ref_=aa_maas&tag=maas">Kindle</option>
-        <option value="https://www.amazon.com/dp/B0DXWSPPZJ?maas=maas_adg_434CE6DEE6BDD81B524C8535384DBF47_afap_abs&ref_=aa_maas&tag=maas">Paperback</option>
-        <option value="https://www.amazon.com/dp/B0F13KLWWN?maas=maas_adg_12185BEA40112FD9AEEE2F5967D10074_afap_abs&ref_=aa_maas&tag=maas">Hardcover</option>
-        <option value="https://www.barnesandnoble.com/w/project-crucifix-jj-cruz/1147179321?ean=2940184602110">Barnes & Noble</option>
-    </select>
-    <button class="buy-button" onclick="goToAmazon('projectCrucifix')">Buy Now</button>
-</div>
+                <img src="projectcrucifixcover.jpg" alt="Project Crucifix">
+                <h3>Project Crucifix</h3>
+                <select id="projectCrucifix">
+                    <option value="https://www.amazon.com/dp/B0DZ6XL93G">Kindle</option>
+                    <option value="https://www.amazon.com/dp/B0DXWSPPZJ">Paperback</option>
+                    <option value="https://www.amazon.com/dp/B0F13KLWWN">Hardcover</option>
+                    <option value="https://www.barnesandnoble.com/w/project-crucifix-jj-cruz/1147179321">Barnes & Noble</option>
+                </select>
+                <button class="buy-button" onclick="goToAmazon('projectCrucifix')">Buy Now</button>
+            </div>
 
             <!-- The Halloween Chronicles -->
             <div class="book">
                 <img src="halloweenchronicles.jpg" alt="The Halloween Chronicles">
                 <h3>The Halloween Chronicles</h3>
                 <select id="halloweenChronicles">
-                    <option value="https://www.amazon.com/dp/B0F1DBTD5F?maas=maas_adg_643474DD3425E30306FAE9C9DE7823E7_afap_abs&ref_=aa_maas&tag=maas">Kindle</option>
-                    <option value="https://www.amazon.com/dp/B0F1DJ1PMG?maas=maas_adg_449D1986CC53C9258DF4F6CF7C1DC8DA_afap_abs&ref_=aa_maas&tag=maas">Paperback</option>
+                    <option value="https://www.amazon.com/dp/B0F1DBTD5F">Kindle</option>
+                    <option value="https://www.amazon.com/dp/B0F1DJ1PMG">Paperback</option>
                 </select>
                 <button class="buy-button" onclick="goToAmazon('halloweenChronicles')">Buy on Amazon</button>
             </div>
 
-            <!-- Chances of Snow Series (Barnes & Noble) -->
+            <!-- Chances of Snow Series -->
             <div class="book">
                 <img src="chancesofsnowtwoworldsbefore.jpg" alt="Chances of Snow Series">
                 <h3>Chances of Snow Series</h3>
-                <button class="buy-button" onclick="window.location.href='https://www.barnesandnoble.com/s/%22JJ%20Cruz%22?Ntk=P_key_Contributor_List&Ns=P_Sales_Rank&Ntx=mode+matchall'">Buy on B&N</button>
+                <button class="buy-button" onclick="window.location.href='https://www.barnesandnoble.com/s/%22JJ%20Cruz%22'">Buy on B&N</button>
             </div>
 
             <!-- Author Bio -->
@@ -140,11 +140,12 @@
                 <button class="buy-button" onclick="window.location.href='about.html'">Learn More</button>
             </div>
 
-            <!-- Indie Author Recommendation -->
+            <!-- Featured Author Recommendation -->
             <div class="book">
-                <img src="tba.png" alt="Indie Author Recommendation">
-                <h3>JJ's Recommendation of the Week!</h3>
-                <button class="buy-button disabled-button" disabled>Coming Soon</button>
+                <img src="stephenking_youlikeitdarker.jpg" alt="You Like It Darker">
+                <h3>JJ's Weekly Recommendation</h3>
+                <p><strong>Stephen King - You Like It Darker</strong><br>A brilliant, brooding collection of short stories that dive into humanity’s shadow side. Recommended for fans of twisted truths and layered chills.</p>
+                <button class="buy-button" onclick="window.open('https://www.amazon.com/You-Like-Darker-Stephen-King/dp/1399725106')">Check It Out</button>
             </div>
         </div>
 
