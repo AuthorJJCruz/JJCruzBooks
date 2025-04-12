@@ -34,7 +34,7 @@
         .btn:hover {
             background-color: darkred;
         }
-        .start-button {
+        .start-button, .test-button {
             background-color: white;
             color: black;
             padding: 10px 20px;
@@ -60,7 +60,11 @@
 
     <h1>Welcome to the Fun Page</h1>
 
-    <button class="start-button" id="fun-button">Start the Game</button>
+    <button class="start-button" id="fun-button" onclick="window.location.href='game.html'">Start the Game</button>
+    
+    <!-- New Personality Test Button -->
+    <br>
+    <button class="test-button" onclick="window.location.href='book-personality-test.html'">Take the Book Personality Test</button>
 
     <div class="game-container" id="game-container">
         <p id="text"></p>
