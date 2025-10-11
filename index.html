@@ -1,207 +1,196 @@
 <!DOCTYPE html> 
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JJ Cruz Books</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JJ Cruz Books</title>
 
-    <!-- TikTok Pixel Code Start -->
-    <script>
-        !function (w, d, t) {
-            w.TiktokAnalyticsObject = t;
-            var ttq = w[t] = w[t] || [];
-            ttq.methods = ["page", "track", "identify", "instances", "debug", "on", "off", "once", "ready", "alias", "group", "enableCookie", "disableCookie", "holdConsent", "revokeConsent", "grantConsent"];
-            ttq.setAndDefer = function (t, e) {
-                t[e] = function () { t.push([e].concat(Array.prototype.slice.call(arguments, 0))) }
-            };
-            for (var i = 0; i < ttq.methods.length; i++) ttq.setAndDefer(ttq, ttq.methods[i]);
-            ttq.instance = function (t) {
-                for (var e = ttq._i[t] || [], n = 0; n < ttq.methods.length; n++) ttq.setAndDefer(e, ttq.methods[n]);
-                return e
-            };
-            ttq.load = function (e, n) {
-                var r = "https://analytics.tiktok.com/i18n/pixel/events.js";
-                ttq._i = ttq._i || {}, ttq._i[e] = [], ttq._i[e]._u = r, ttq._t = ttq._t || {}, ttq._t[e] = +new Date, ttq._o = ttq._o || {}, ttq._o[e] = n || {};
-                n = document.createElement("script");
-                n.type = "text/javascript", n.async = !0, n.src = r + "?sdkid=" + e + "&lib=" + t;
-                e = document.getElementsByTagName("script")[0];
-                e.parentNode.insertBefore(n, e)
-            };
+  <!-- ================== PAGE STYLES ================== -->
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: black;
+      color: white;
+    }
 
-            ttq.load('CS4TTMRC77U3OBONRRC0');
-            ttq.page();
-        }(window, document, 'ttq');
-    </script>
-    <!-- TikTok Pixel Code End -->
+    /* ⚡ Lightning Intro Styling */
+    #intro-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      overflow: hidden;
+    }
 
-    <!-- Google Analytics Tracking Code -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1JWW4R9YBE"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-1JWW4R9YBE');
-    </script>
+    .intro-cover {
+      opacity: 0;
+      width: 300px;
+      border: 3px solid #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 50px rgba(255,255,255,0.8);
+      transition: opacity 1s ease-in-out;
+    }
 
-    <!-- Google Ads Tag (AW-16927877191) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16927877191"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'AW-16927877191');
-    </script>
+    .flash {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: white;
+      opacity: 0;
+    }
 
-    <!-- ================== PAGE STYLES ================== -->
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: black;
-            color: white;
-        }
+    /* Fade-in Title Text */
+    #intro-title {
+      position: fixed;
+      top: 60%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 2.5rem;
+      letter-spacing: 2px;
+      color: white;
+      opacity: 0;
+      z-index: 9998;
+      transition: opacity 1s ease-in-out;
+    }
 
-        /* ⚡ Lightning Intro Styling */
-        #intro-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: black;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            overflow: hidden;
-        }
+    /* Banner Styling */
+    .banner {
+      width: 100%;
+      height: 40vh;
+      background: url('JJ.Cruz.Banner.png') no-repeat center center;
+      background-size: cover;
+    }
 
-        .intro-cover {
-            opacity: 0;
-            width: 300px;
-            border: 3px solid #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 50px rgba(255,255,255,0.8);
-            transition: opacity 1s ease-in-out;
-        }
+    /* Main Content */
+    .content {
+      padding: 20px;
+    }
 
-        .flash {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: white;
-            opacity: 0;
-        }
+    /* Button Styling */
+    .button-container {
+      margin-top: 20px;
+    }
 
-        /* Banner Styling */
-        .banner {
-            width: 100%;
-            height: 40vh;
-            background: url('JJ.Cruz.Banner.png') no-repeat center center;
-            background-size: cover;
-        }
+    button {
+      background-color: #333;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      margin: 10px;
+      border-radius: 5px;
+    }
 
-        /* Main Content */
-        .content {
-            padding: 20px;
-        }
-
-        /* Button Styling */
-        .button-container {
-            margin-top: 20px;
-        }
-
-        button {
-            background-color: #333;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            margin: 10px;
-            border-radius: 5px;
-        }
-
-        button:hover {
-            background-color: #555;
-        }
-    </style>
+    button:hover {
+      background-color: #555;
+    }
+  </style>
 </head>
+
 <body>
 
-    <!-- ⚡ Lightning Intro -->
-    <div id="intro-overlay">
-      <div class="flash"></div>
-      <img src="403cover1.jpg" alt="403 Prohibited" class="intro-cover">
+  <!-- ⚡ Lightning Intro -->
+  <div id="intro-overlay">
+    <div class="flash"></div>
+    <img src="403cover1.jpg" alt="403 Prohibited" class="intro-cover">
+  </div>
+
+  <!-- ✨ Animated Title -->
+  <h1 id="intro-title">JJ Cruz Books</h1>
+
+  <!-- Banner -->
+  <div class="banner"></div>
+
+  <!-- Main Content -->
+  <div class="content">
+    <h1>Welcome to JJ Cruz Books</h1>
+    <p>Explore thrilling stories that challenge your imagination.</p>
+
+    <!-- Navigation Buttons -->
+    <div class="button-container">
+      <a href="books.html"><button>Books</button></a>
+      <a href="about.html"><button>About</button></a>
+      <a href="contact.html"><button>Contact</button></a>
+      <a href="fun.html"><button>Fun</button></a>
     </div>
 
-    <!-- Banner -->
-    <div class="banner"></div>
-
-    <!-- Main Content -->
-    <div class="content">
-        <h1>Welcome to JJ Cruz Books</h1>
-        <p>Explore thrilling stories that challenge your imagination.</p>
-
-        <!-- Navigation Buttons -->
-        <div class="button-container">
-            <a href="books.html"><button>Books</button></a>
-            <a href="about.html"><button>About</button></a>
-            <a href="contact.html"><button>Contact</button></a>
-            <a href="fun.html"><button>Fun</button></a>
-        </div>
-
-        <!-- Newsletter Button -->
-        <div class="button-container">
-            <a href="https://forms.gle/6rdGnJbYWnFRey4o9" target="_blank">
-                <button style="
-                    background-color: red;
-                    color: white;
-                    border: none;
-                    padding: 12px 24px;
-                    font-size: 16px;
-                    border-radius: 6px;
-                    cursor: pointer;
-                    box-shadow: 0px 0px 8px rgba(255, 255, 255, 0.2);
-                ">
-                    📬 Join Weekly Newsletters
-                </button>
-            </a>
-        </div>
+    <!-- Newsletter Button -->
+    <div class="button-container">
+      <a href="https://forms.gle/6rdGnJbYWnFRey4o9" target="_blank">
+        <button style="
+          background-color: red;
+          color: white;
+          border: none;
+          padding: 12px 24px;
+          font-size: 16px;
+          border-radius: 6px;
+          cursor: pointer;
+          box-shadow: 0px 0px 8px rgba(255, 255, 255, 0.2);
+        ">
+          📬 Join Weekly Newsletters
+        </button>
+      </a>
     </div>
+  </div>
 
-    <!-- ⚡ Lightning Intro Script -->
-    <script>
-        window.addEventListener('load', () => {
-            const overlay = document.getElementById('intro-overlay');
-            const flash = document.querySelector('.flash');
-            const cover = document.querySelector('.intro-cover');
+  <!-- ⚡ Lightning Intro Script -->
+  <script>
+    window.addEventListener('load', () => {
+      const overlay = document.getElementById('intro-overlay');
+      const flash = document.querySelector('.flash');
+      const cover = document.querySelector('.intro-cover');
+      const title = document.getElementById('intro-title');
+      const thunder = new Audio('mixkit-big-thunder-rumble-1297.wav');
 
-// Step 1: Lightning flash (realistic double-flash)
-flash.style.transition = 'opacity 0.1s ease';
-flash.style.opacity = '1';
-setTimeout(() => flash.style.opacity = '0', 150);
+      // Step 1: Lightning flash (realistic double-flash)
+      flash.style.transition = 'opacity 0.1s ease';
+      flash.style.opacity = '1';
+      setTimeout(() => flash.style.opacity = '0', 150);
 
-// ⚡ Second mini-flash for realism
-setTimeout(() => {
-  flash.style.opacity = '1';
-  setTimeout(() => flash.style.opacity = '0', 100);
-}, 600);
+      // ⚡ Second mini-flash for realism
+      setTimeout(() => {
+        flash.style.opacity = '1';
+        setTimeout(() => flash.style.opacity = '0', 100);
+      }, 600);
 
-            // Step 2: Fade in book cover
-            setTimeout(() => {
-                cover.style.opacity = '1';
-            }, 400);
+      // 🔊 Play thunder slightly after the flash
+      setTimeout(() => {
+        thunder.volume = 0.7;
+        thunder.play();
+      }, 700);
 
-            // Step 3: Fade out overlay and reveal site
-            setTimeout(() => {
-                overlay.style.transition = 'opacity 1s ease';
-                overlay.style.opacity = '0';
-                setTimeout(() => overlay.remove(), 1000);
-            }, 2500);
-        });
-    </script>
+      // ✨ Fade in title text
+      setTimeout(() => {
+        title.style.opacity = '1';
+      }, 700);
+
+      // Fade out title with overlay
+      setTimeout(() => {
+        title.style.opacity = '0';
+      }, 2200);
+
+      // Step 2: Fade in book cover
+      setTimeout(() => {
+        cover.style.opacity = '1';
+      }, 400);
+
+      // Step 3: Fade out overlay and reveal site
+      setTimeout(() => {
+        overlay.style.transition = 'opacity 1s ease';
+        overlay.style.opacity = '0';
+        setTimeout(() => overlay.remove(), 1000);
+      }, 2500);
+    });
+  </script>
 
 </body>
 </html>
