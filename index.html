@@ -162,11 +162,13 @@
         setTimeout(() => flash.style.opacity = '0', 100);
       }, 600);
 
-      // 🔊 Play thunder slightly after the flash
-      setTimeout(() => {
-        thunder.volume = 0.7;
-        thunder.play();
-      }, 700);
+      // 🔊 Play thunder after flash — triggered by first user interaction
+const playThunder = () => {
+  thunder.volume = 0.7;
+  thunder.play().catch(err => console.log('Audio blocked:', err));
+  document.removeEventListener('click', playThunder);
+};
+document.addEventListener('click', playThunder);
 
       // ✨ Fade in title text
       setTimeout(() => {
