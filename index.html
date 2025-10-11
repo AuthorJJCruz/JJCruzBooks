@@ -178,10 +178,16 @@
             const flash = document.querySelector('.flash');
             const cover = document.querySelector('.intro-cover');
 
-            // Step 1: Lightning flash
-            flash.style.transition = 'opacity 0.2s ease';
-            flash.style.opacity = '1';
-            setTimeout(() => flash.style.opacity = '0', 200);
+// Step 1: Lightning flash (realistic double-flash)
+flash.style.transition = 'opacity 0.1s ease';
+flash.style.opacity = '1';
+setTimeout(() => flash.style.opacity = '0', 150);
+
+// ⚡ Second mini-flash for realism
+setTimeout(() => {
+  flash.style.opacity = '1';
+  setTimeout(() => flash.style.opacity = '0', 100);
+}, 600);
 
             // Step 2: Fade in book cover
             setTimeout(() => {
