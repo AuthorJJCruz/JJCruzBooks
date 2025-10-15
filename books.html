@@ -1,190 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Books</title>
-    <style>
-        body {
-            background: url('Bookpageimage.png') no-repeat center center fixed;
-            background-size: cover;
-            color: white;
-            text-align: center;
-            font-family: Arial, sans-serif;
-            transition: background-color 0.3s, color 0.3s;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Books</title>
+<style>
+    body {
+        background: url('Bookpageimage.png') no-repeat center center fixed;
+        background-size: cover;
+        color: white;
+        text-align: center;
+        font-family: Arial, sans-serif;
+        transition: background-color 0.3s, color 0.3s;
+    }
 
-        .dark-mode {
-            background: black;
-            color: white;
-        }
+    .dark-mode { background: black; color: white; }
 
-        .overlay {
-            background: rgba(0, 0, 0, 0.7);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
+    .overlay {
+        background: rgba(0, 0, 0, 0.7);
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+    }
 
-        .content {
-            position: relative;
-            z-index: 1;
-            padding: 20px;
-        }
+    .content { position: relative; z-index: 1; padding: 20px; }
 
-        .book-container {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-top: 20px;
-            padding: 10px;
-            max-width: 100%;
-        }
+    .book-container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin-top: 20px;
+        padding: 10px;
+        max-width: 100%;
+    }
 
-        .book {
-            background: rgba(34, 34, 34, 0.9);
-            padding: 10px;
-            border-radius: 10px;
-            width: 230px;
-            min-width: 200px;
-            box-sizing: border-box;
-            text-align: center;
-            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
-        }
+    .book {
+        background: rgba(34, 34, 34, 0.9);
+        padding: 10px;
+        border-radius: 10px;
+        width: 230px;
+        min-width: 200px;
+        box-sizing: border-box;
+        text-align: center;
+        box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+    }
 
-        .book img {
-            width: 100%;
-            height: auto;
-            border-radius: 5px;
-            transition: transform 0.3s ease-in-out;
-        }
+    .book img {
+        width: 100%;
+        height: auto;
+        border-radius: 5px;
+        transition: transform 0.3s ease-in-out;
+    }
+    .book img:hover { transform: scale(1.05); }
 
-        .book img:hover {
-            transform: scale(1.05);
-        }
+    .buy-button {
+        background-color: red;
+        color: white;
+        border: none;
+        padding: 10px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+        width: 100%;
+        margin-top: 10px;
+    }
+    .buy-button:hover { background-color: darkred; }
 
-        .buy-button {
-            background-color: red;
-            color: white;
-            border: none;
-            padding: 10px;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 5px;
-            width: 100%;
-            margin-top: 10px;
-        }
+    .back-button, .toggle-dark-mode {
+        background-color: blue;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-top: 20px;
+    }
 
-        .buy-button:hover {
-            background-color: darkred;
-        }
+    select {
+        width: 100%;
+        padding: 8px;
+        margin-top: 8px;
+        border-radius: 5px;
+        border: none;
+    }
 
-        .back-button, .toggle-dark-mode {
-            background-color: blue;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 5px;
-            margin-top: 20px;
-        }
+    p { font-size: 0.9em; margin-top: 10px; color: #ccc; }
 
-        select {
-            width: 100%;
-            padding: 8px;
-            margin-top: 8px;
-            border-radius: 5px;
-            border: none;
-        }
+    .glow-pulse {
+        animation: glowPulse 1.5s ease-in-out infinite;
+        color: #fff;
+        text-shadow:
+            0 0 10px #ff3b3b,
+            0 0 20px #ff3b3b,
+            0 0 30px #ff3b3b,
+            0 0 40px #ff1a1a,
+            0 0 70px #ff1a1a,
+            0 0 80px #ff1a1a;
+    }
 
-        p {
-            font-size: 0.9em;
-            margin-top: 10px;
-            color: #ccc;
-        }
-
-        .glow-pulse {
-            animation: glowPulse 1.5s ease-in-out infinite;
-            color: #fff;
+    @keyframes glowPulse {
+        50% {
             text-shadow:
-                0 0 10px #ff3b3b,
-                0 0 20px #ff3b3b,
-                0 0 30px #ff3b3b,
-                0 0 40px #ff1a1a,
-                0 0 70px #ff1a1a,
-                0 0 80px #ff1a1a;
+                0 0 20px #ff4d4d,
+                0 0 40px #ff0000,
+                0 0 60px #ff0000;
         }
+    }
 
-        @keyframes glowPulse {
-            0% {
-                text-shadow:
-                    0 0 5px #ff3b3b,
-                    0 0 10px #ff3b3b,
-                    0 0 20px #ff3b3b,
-                    0 0 30px #ff1a1a,
-                    0 0 50px #ff1a1a,
-                    0 0 60px #ff1a1a;
-            }
-            50% {
-                text-shadow:
-                    0 0 15px #ff4d4d,
-                    0 0 30px #ff4d4d,
-                    0 0 40px #ff0000,
-                    0 0 50px #ff0000,
-                    0 0 70px #ff0000,
-                    0 0 90px #ff0000;
-            }
-            100% {
-                text-shadow:
-                    0 0 5px #ff3b3b,
-                    0 0 10px #ff3b3b,
-                    0 0 20px #ff3b3b,
-                    0 0 30px #ff1a1a,
-                    0 0 50px #ff1a1a,
-                    0 0 60px #ff1a1a;
-            }
-        }
+    /* Lightning Intro Overlay */
+    #lightning-intro {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        animation: fadeOut 1.5s ease forwards;
+        animation-delay: 2s;
+    }
 
-        /* ⚡ Lightning Intro Overlay */
-        #lightning-intro {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: black;
-            display: flex;
+    #lightning-gif { width: 100%; height: 100%; object-fit: cover; }
+
+    @keyframes fadeOut {
+        to { opacity: 0; visibility: hidden; }
+    }
+
+    @media (max-width: 768px) {
+        .book-container {
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            animation: fadeOut 1.5s ease forwards;
-            animation-delay: 2s;
         }
-
-        #lightning-gif {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        @keyframes fadeOut {
-            to {
-                opacity: 0;
-                visibility: hidden;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .book-container {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-    </style>
+    }
+</style>
 </head>
 <body>
 
@@ -197,7 +148,6 @@
 
 <div class="content">
     <h1>My Books</h1>
-
     <button class="toggle-dark-mode" onclick="toggleDarkMode()">Toggle Dark Mode</button>
 
     <div class="book-container">
@@ -239,11 +189,8 @@
             </select>
             <button class="buy-button" onclick="goToAmazon('EchoesofAlexDansen')">Buy Now</button>
         </div>
-    </div>
 
-    <button class="back-button" onclick="window.location.href='index.html'">Back to Home</button>
-</div>
-<!-- The Halloween Chronicles -->
+        <!-- The Halloween Chronicles -->
         <div class="book">
             <img src="halloweenchronicles.jpg" alt="The Halloween Chronicles">
             <h3>The Halloween Chronicles</h3>
@@ -270,21 +217,25 @@
             <button class="buy-button" onclick="window.location.href='about.html'">Learn More</button>
         </div>
     </div>
+
+    <button class="back-button" onclick="window.location.href='index.html'">Back to Home</button>
+</div>
+
 <script>
-    function toggleDarkMode() {
-        document.body.classList.toggle("dark-mode");
-    }
+function toggleDarkMode() {
+    document.body.classList.toggle("dark-mode");
+}
 
-    function goToAmazon(bookId) {
-        var selectedLink = document.getElementById(bookId).value;
-        window.location.href = selectedLink;
-    }
+function goToAmazon(bookId) {
+    var selectedLink = document.getElementById(bookId).value;
+    window.location.href = selectedLink;
+}
 
-    window.addEventListener("load", function() {
-        setTimeout(() => {
-            document.getElementById("lightning-intro").style.display = "none";
-        }, 2500); // total duration before hiding lightning
-    });
+window.addEventListener("load", function() {
+    setTimeout(() => {
+        document.getElementById("lightning-intro").style.display = "none";
+    }, 2500);
+});
 </script>
 
 </body>
