@@ -13,10 +13,12 @@
             font-family: Arial, sans-serif;
             transition: background-color 0.3s, color 0.3s;
         }
+
         .dark-mode {
             background: black;
             color: white;
         }
+
         .overlay {
             background: rgba(0, 0, 0, 0.7);
             position: absolute;
@@ -25,11 +27,13 @@
             width: 100%;
             height: 100%;
         }
+
         .content {
             position: relative;
             z-index: 1;
             padding: 20px;
         }
+
         .book-container {
             display: flex;
             justify-content: center;
@@ -39,6 +43,7 @@
             padding: 10px;
             max-width: 100%;
         }
+
         .book {
             background: rgba(34, 34, 34, 0.9);
             padding: 10px;
@@ -49,15 +54,18 @@
             text-align: center;
             box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
         }
+
         .book img {
             width: 100%;
             height: auto;
             border-radius: 5px;
             transition: transform 0.3s ease-in-out;
         }
+
         .book img:hover {
             transform: scale(1.05);
         }
+
         .buy-button {
             background-color: red;
             color: white;
@@ -69,9 +77,11 @@
             width: 100%;
             margin-top: 10px;
         }
+
         .buy-button:hover {
             background-color: darkred;
         }
+
         .back-button, .toggle-dark-mode {
             background-color: blue;
             color: white;
@@ -82,6 +92,7 @@
             border-radius: 5px;
             margin-top: 20px;
         }
+
         select {
             width: 100%;
             padding: 8px;
@@ -89,11 +100,13 @@
             border-radius: 5px;
             border: none;
         }
+
         p {
             font-size: 0.9em;
             margin-top: 10px;
             color: #ccc;
         }
+
         .glow-pulse {
             animation: glowPulse 1.5s ease-in-out infinite;
             color: #fff;
@@ -105,6 +118,7 @@
                 0 0 70px #ff1a1a,
                 0 0 80px #ff1a1a;
         }
+
         @keyframes glowPulse {
             0% {
                 text-shadow:
@@ -134,6 +148,36 @@
                     0 0 60px #ff1a1a;
             }
         }
+
+        /* ⚡ Lightning Intro Overlay */
+        #lightning-intro {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            animation: fadeOut 1.5s ease forwards;
+            animation-delay: 2s;
+        }
+
+        #lightning-gif {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
         @media (max-width: 768px) {
             .book-container {
                 flex-direction: column;
@@ -144,6 +188,11 @@
 </head>
 <body>
 
+<!-- ⚡ Lightning Intro -->
+<div id="lightning-intro">
+    <img src="night-lightning-bolt.gif" alt="Lightning Flash" id="lightning-gif">
+</div>
+
 <div class="overlay"></div>
 
 <div class="content">
@@ -152,105 +201,44 @@
     <button class="toggle-dark-mode" onclick="toggleDarkMode()">Toggle Dark Mode</button>
 
     <div class="book-container">
-<!-- 403 Prohibited -->
-<div class="book">
-  <img src="403cover1.jpg" alt="403 Prohibited">
-  <h3>403 Prohibited</h3>
-  <p><em>Loosely based on true historical events, Chronos Perlman discovers the truth about humanity and must find a way to sustain life as we know it.</em></p>
-                <select id="403 Prohibited">           
+        <!-- 403 Prohibited -->
+        <div class="book">
+            <img src="403cover1.jpg" alt="403 Prohibited">
+            <h3>403 Prohibited</h3>
+            <p><em>Loosely based on true historical events, Chronos Perlman discovers the truth about humanity and must find a way to sustain life as we know it.</em></p>
+            <select id="403Prohibited">
                 <option value="https://www.amazon.com/dp/B0FVFYC6QK">Kindle</option>
                 <option value="https://www.amazon.com/dp/B0FVQMT92L">Paperback</option>
                 <option value="https://www.barnesandnoble.com/s/403%20prohbited">Barnes & Noble</option>
             </select>
-            <button class="buy-button" onclick="goToAmazon('403 Prohibited')">Buy Now</button>
+            <button class="buy-button" onclick="goToAmazon('403Prohibited')">Buy Now</button>
         </div>
-   
+
         <!-- Project Crucifix -->
         <div class="book">
             <img src="projectcrucifixcover.jpg" alt="Project Crucifix">
             <h3>Project Crucifix</h3>
-            <p><em>A mind-bending sci-fi thriller about time travel, secret government agendas, and one man’s mission to rewrite fate. Perfect for fans of high-stakes conspiracy and quantum physics twists.</em></p>
+            <p><em>A mind-bending sci-fi thriller about time travel, secret government agendas, and one man’s mission to rewrite fate.</em></p>
             <select id="projectCrucifix">
                 <option value="https://payhip.com/b/D9Hqt">Audiobook</option>
                 <option value="https://www.amazon.com/dp/B0DZ6XL93G">Kindle</option>
                 <option value="https://www.amazon.com/dp/B0DXWSPPZJ">Paperback</option>
                 <option value="https://www.amazon.com/dp/B0F13KLWWN">Hardcover</option>
-                <option value="https://www.barnesandnoble.com/w/project-crucifix-jj-cruz/1147179321">Barnes & Noble</option>
             </select>
             <button class="buy-button" onclick="goToAmazon('projectCrucifix')">Buy Now</button>
         </div>
 
-<!-- The Echoes of Alex Dansen -->
-<div class="book">
-  <img src="Echo.jpg" alt="The Echoes of Alex Dansen">
-  <h3 class="glow-pulse">The Echoes of Alex Dansen</h3>
-  <p>
-    <em>A terrifying, psychological horror thriller with a pace hard to keep up with. This book is not for the faint of heart.</em>
-  </p>
-  <select id="TheEchoesofAlexDansen">
-    <option value="https://www.amazon.com/dp/B0F5P2SSRY">Kindle</option>
-    <option value="https://www.amazon.com/dp/B0F5PX92MN">Paperback</option>
-  </select>
-  <button class="buy-button" onclick="goToAmazon('TheEchoesofAlexDansen')">Buy Now</button>
-</div>
-
-        <!-- The Halloween Chronicles -->
+        <!-- The Echoes of Alex Dansen -->
         <div class="book">
-            <img src="halloweenchronicles.jpg" alt="The Halloween Chronicles">
-            <h3>The Halloween Chronicles</h3>
-            <p><em>When childhood fears meet real-world terror, survival becomes personal. A nostalgic yet chilling holiday horror tale that'll leave you checking under your bed twice.</em></p>
-            <select id="halloweenChronicles">
-                <option value="https://www.amazon.com/dp/B0F1DBTD5F">Kindle</option>
-                <option value="https://www.amazon.com/dp/B0F1DJ1PMG">Paperback</option>
+            <img src="Echo.jpg" alt="The Echoes of Alex Dansen">
+            <h3 class="glow-pulse">The Echoes of Alex Dansen</h3>
+            <p><em>A terrifying, psychological horror thriller with a pace hard to keep up with. This book is not for the faint of heart.</em></p>
+            <select id="EchoesofAlexDansen">
+                <option value="https://www.amazon.com/dp/B0F5P2SSRY">Kindle</option>
+                <option value="https://www.amazon.com/dp/B0F5PX92MN">Paperback</option>
             </select>
-            <button class="buy-button" onclick="goToAmazon('halloweenChronicles')">Buy on Amazon</button>
+            <button class="buy-button" onclick="goToAmazon('EchoesofAlexDansen')">Buy Now</button>
         </div>
-
-        <!-- Chances of Snow Series -->
-        <div class="book">
-            <img src="chancesofsnowtwoworldsbefore.jpg" alt="Chances of Snow Series">
-            <h3>Chances of Snow Series</h3>
-            <p><em>Two worlds. One love. A dramatic, steamy rollercoaster that explores identity, loss, and the power of second chances across dimensions.</em></p>
-            <button class="buy-button" onclick="window.location.href='https://www.barnesandnoble.com/s/%22JJ%20Cruz%22'">Buy on B&N</button>
-        </div>
-
-<!-- Chances of Snow: Two Worlds Forever -->
-<div class="book">
-  <img src="cosnow.jpg" alt="Chances of Snow: Two Worlds Forever">
-  <h3 class="glow-pulse">Chances of Snow: Two Worlds Forever</h3>
-  <p>
-    <em>A hauntingly beautiful story that explores love, time, and parallel lives. Perfect for fans of romantic thrillers with a twist.</em>
-  </p>
-  <select id="ChancesOfSnow">
-    <option value="https://www.amazon.com/dp/B0F3GJ9CQH">Kindle</option>
-    <option value="https://www.amazon.com/dp/B0F3TWDKF1">Paperback</option>
-  </select>
-  <button class="buy-button" onclick="goToAmazon('ChancesOfSnow')">Buy Now</button>
-</div>
- 
-        <!-- Author Bio -->
-        <div class="book">
-            <img src="authorpicture.jpg" alt="Author Bio">
-            <h3>Author Bio</h3>
-            <button class="buy-button" onclick="window.location.href='about.html'">Learn More</button>
-        </div>
-
-     <!-- Featured Author Recommendation -->
-<div class="book">
-  <img src="403cover1.jpg" alt="403 Prohibited">
-  <h3 class="glow-pulse">JJ's Weekly Recommendation</h3>
-  <p>
-    <strong>403 Prohibited</strong><br>
-    My newest release, 403 Prohibited is about the offspring of two internet pioneers. He discovers the meaning of his existence is to protect time and discovers what we thought we knew about life is just untrue. Loosley based on true historical events. Must read!
-  </p>
-  <select id="403 Prohibited">           
-                <option value="https://www.amazon.com/dp/B0FVFYC6QK">Kindle</option>
-                <option value="https://www.amazon.com/dp/B0FVQMT92L">Paperback</option>
-                <option value="https://www.barnesandnoble.com/s/403%20prohbited">Barnes & Noble</option>
-            </select>
-            <button class="buy-button" onclick="goToAmazon('403 Prohibited')">Buy Now</button>
-        </div>
-
     </div>
 
     <button class="back-button" onclick="window.location.href='index.html'">Back to Home</button>
@@ -265,6 +253,12 @@
         var selectedLink = document.getElementById(bookId).value;
         window.location.href = selectedLink;
     }
+
+    window.addEventListener("load", function() {
+        setTimeout(() => {
+            document.getElementById("lightning-intro").style.display = "none";
+        }, 2500); // total duration before hiding lightning
+    });
 </script>
 
 </body>
