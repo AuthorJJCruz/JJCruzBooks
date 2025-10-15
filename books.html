@@ -243,7 +243,33 @@
 
     <button class="back-button" onclick="window.location.href='index.html'">Back to Home</button>
 </div>
+<!-- The Halloween Chronicles -->
+        <div class="book">
+            <img src="halloweenchronicles.jpg" alt="The Halloween Chronicles">
+            <h3>The Halloween Chronicles</h3>
+            <p><em>When childhood fears meet real-world terror, survival becomes personal.</em></p>
+            <select id="halloweenChronicles">
+                <option value="https://www.amazon.com/dp/B0F1DBTD5F">Kindle</option>
+                <option value="https://www.amazon.com/dp/B0F1DJ1PMG">Paperback</option>
+            </select>
+            <button class="buy-button" onclick="goToAmazon('halloweenChronicles')">Buy on Amazon</button>
+        </div>
 
+        <!-- Chances of Snow Series -->
+        <div class="book">
+            <img src="chancesofsnowtwoworldsbefore.jpg" alt="Chances of Snow Series">
+            <h3>Chances of Snow Series</h3>
+            <p><em>Two worlds. One love. A dramatic, steamy rollercoaster across dimensions.</em></p>
+            <button class="buy-button" onclick="window.location.href='https://www.barnesandnoble.com/s/%22JJ%20Cruz%22'">Buy on B&N</button>
+        </div>
+
+        <!-- Author Bio -->
+        <div class="book">
+            <img src="authorpicture.jpg" alt="Author Bio">
+            <h3>Author Bio</h3>
+            <button class="buy-button" onclick="window.location.href='about.html'">Learn More</button>
+        </div>
+    </div>
 <script>
     function toggleDarkMode() {
         document.body.classList.toggle("dark-mode");
