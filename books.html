@@ -240,18 +240,35 @@
 
 <script>
 function toggleDarkMode() {
-    document.body.classList.toggle("dark-mode");
+  document.body.classList.toggle("dark-mode");
 }
 
-function goToAmazon(bookId) {
-    var selectedLink = document.getElementById(bookId).value;
-    window.location.href = selectedLink;
+// Fire X event, then navigate after a short delay so the hit is sent
+function goToAmazon(selectId, btnEl) {
+  var select = document.getElementById(selectId);
+  var url = select ? select.value : null;
+  var label = (btnEl && btnEl.getAttribute('data-title')) || 'Amazon Buy Click';
+
+  if (!url) return;
+
+  if (typeof twq === 'function') {
+    twq('event','tw-0gynv-ogn9z', {   // ← your Event ID
+      value: 0,
+      currency: 'USD',
+      contents: label,
+      conversion_id: 'buy_click'
+    });
+  }
+
+  // small delay to ensure event fires before leaving page
+  setTimeout(function(){ window.location.href = url; }, 150);
 }
 
 window.addEventListener("load", function() {
-    setTimeout(() => {
-        document.getElementById("lightning-intro").style.display = "none";
-    }, 2500);
+  setTimeout(function(){
+    var intro = document.getElementById("lightning-intro");
+    if (intro) intro.style.display = "none";
+  }, 2500);
 });
 </script>
 
