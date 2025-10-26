@@ -269,5 +269,23 @@ document.addEventListener('click', playThunder);
     });
   </script>
 
+<script>
+(function(){
+  document.addEventListener('click', function(e){
+    var el = e.target.closest('.buy-btn'); 
+    if(!el) return;
+
+    if (typeof twq==='function'){
+      twq('event','tw-0gynv-ogn9z',{
+        value:0,
+        currency:'USD',
+        contents: el.getAttribute('data-title') || 'Amazon Buy Click',
+        conversion_id:'buy_click'
+      });
+    }
+  });
+})();
+</script>
+
 </body>
 </html>
