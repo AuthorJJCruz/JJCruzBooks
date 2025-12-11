@@ -103,6 +103,34 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
     .content {
       padding: 20px;
     }
+    /* 📱 MOBILE OPTIMIZATION */
+    @media (max-width: 600px) {
+      .banner {
+        height: 30vh;
+      }
+
+      #intro-title {
+        font-size: 1.6rem;
+        top: 55%;
+      }
+
+      .intro-cover {
+        width: 220px;
+      }
+
+      .content {
+        padding: 16px 10px;
+      }
+
+      .button-container button {
+        display: block;
+        width: 80%;
+        max-width: 320px;
+        margin: 8px auto;
+        font-size: 15px;
+        padding: 10px 14px;
+      }
+    }
 
     /* Button Styling */
     .button-container {
